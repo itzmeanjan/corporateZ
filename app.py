@@ -16,8 +16,7 @@ def main(targetPath='./data/mca_westbengal_21042018.csv'):
                                           company.name, company.dateOfRegistration))
         else:
             return True
-    except Exception as e:
-        print(e)
+    except Exception:
         return False
 
 
