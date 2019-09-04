@@ -38,7 +38,7 @@ class Company:
     '''
     @property
     def dateOfRegistration(self):
-        return None if self._dateOfRegistration == 'NA' else date(*[int(i) for i in self._dateOfRegistration.split('-')[-1::-1]])
+        return None if self._dateOfRegistration.lower() == 'na' else date(*[int(i) for i in self._dateOfRegistration.split('-')[-1::-1]])
 
 
 '''
@@ -88,7 +88,7 @@ class CompaniesUnderState:
             # which is to be processed for creating an instance of Company class
             with open(targetPath, mode='r', encoding='ISO-8859-1') as fd:
                 companiesUnderStateObject = CompaniesUnderState(
-                    state, [Company(*__fixCommaIssueInAddress__(line).split(',')[:-2]) for line in fd.readlines()[1:]])
+                    state, (Company(*__fixCommaIssueInAddress__(line).split(',')[:-2]) for line in fd.readlines()[1:]))
         except Exception:
             companiesUnderStateObject = None
         finally:
