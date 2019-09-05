@@ -4,7 +4,7 @@ from re import compile as reg_compile
 from os.path import basename
 try:
     from model.corporateStat import CompaniesUnderState
-    from util import categorizeAsPerCompanyStatus
+    from util import categorizeAsPerCompanyStatus, plotCompanyStatusDataForAState
 except ImportError as e:
     print('[!]Module Unavailable: {}'.format(str(e)))
     exit(1)
@@ -18,16 +18,15 @@ def main(targetPath='./data/mca_westbengal_21042018.csv'):
     try:
         companiesUnderStateObject = CompaniesUnderState.importFromCSV(
             __extract_state__(basename(targetPath)), targetPath=targetPath)
-        print(categorizeAsPerCompanyStatus(
-            companiesUnderStateObject.companies))
-        return True
+        return plotCompanyStatusDataForAState(categorizeAsPerCompanyStatus(
+            companiesUnderStateObject.companies), './plots/{}_company_status.png'.format(basename(targetPath)[:-4]))
     except Exception:
         return False
 
 
 if __name__ == '__main__':
     try:
-        main()
+        print('Success' if main() else 'Failure')
     except KeyboardInterrupt:
         print('\n[!]Terminated')
     finally:
