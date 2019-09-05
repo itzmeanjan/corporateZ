@@ -21,11 +21,14 @@ def plotCompanyStatusDataForAState(dataSet, targetPath):
         if(not exists(dirname(targetPath))):
             # creating target directory if not existing already
             mkdir(dirname(targetPath))
-        labels = list(dataSet.keys())
+        labels = sorted(dataSet, key=lambda elem: len(
+            dataSet[elem]), reverse=True)
         # this is the actual data to be plotted
-        data = [len(v) for k, v in dataSet.items()]
-        plt.pie(data, labels=labels, shadow=True,
-                autopct='%1.1f%%')  # plotting pie chart
+        data = [len(dataSet[i]) for i in labels]
+        # figure on which pie chart to be drawn ( of size 2400x1200 )
+        plt.figure(figsize=(24, 12), dpi=100)
+        patches, _ = plt.pie(data, shadow=True)  # plotting pie chart
+        plt.legend(patches, labels, loc='best')
         plt.title('Status of Companies at West Bengal')
         plt.axis('equal')
         plt.tight_layout()
@@ -39,13 +42,13 @@ def plotCompanyStatusDataForAState(dataSet, targetPath):
 
 '''
     Takes a generator ( generating model.corporateStat.Company as stream ) as argument
-    & returns a Dict[str, model.corporateStat.Company] holding all companies of a 
+    & returns a Dict[str, model.corporateStat.Company] holding all companies of a
     certain state, categorzied as per their status, which is to be used for plotting.
 '''
 
 
 def categorizeAsPerCompanyStatus(dataSet):
-    return reduce(lambda acc, cur: dict([(cur.status, [cur])] + [(k, v) for k, v in acc.items()] if cur.status not in acc else ((k, [cur] + v) if k == cur.status else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.status, [cur])] + [(k, v) for k, v in acc.items()]) if cur.status not in acc else dict(((k, [cur] + v) if k == cur.status else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 if __name__ == '__main__':
