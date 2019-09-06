@@ -26,8 +26,8 @@ def plotCategorizedCompanyDataForACertainState(dataSet, targetPath, title):
                         dataSet[elem], reverse=True)
         # this is the actual data to be plotted
         data = [dataSet[i] for i in labels]
-        # figure on which pie chart to be drawn ( of size 1600x1200 )
-        plt.figure(figsize=(16, 12), dpi=100)
+        # figure on which pie chart to be drawn ( of size 2400x1200 )
+        plt.figure(figsize=(24, 12), dpi=100)
         patches, _ = plt.pie(data)  # plotting pie chart
         plt.legend(patches, labels, loc='best')
         plt.title(title)
