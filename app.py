@@ -5,7 +5,7 @@ from os.path import basename
 from functools import reduce
 try:
     from model.corporateStat import CompaniesUnderState
-    from util import categorizeAsPerCompanyStatus, categorizeAsPerCompanyClass, categorizeAsPerCompanyCategory, plotCategorizedCompanyDataForACertainState
+    from util import *
 except ImportError as e:
     print('[!]Module Unavailable: {}'.format(str(e)))
     exit(1)
@@ -37,16 +37,20 @@ def main(targetPath='./data/mca_westbengal_21042018.csv') -> float:
         return reduce(lambda acc, cur: (acc[0] + 1, acc[1]+1) if cur else (acc[0], acc[1]+1), result, (0, 0))
 
     try:
-        companiesUnderStateObject = CompaniesUnderState.importFromCSV(
+        companiesUnderState = CompaniesUnderState.importFromCSV(
             __extract_state__(basename(targetPath)), targetPath=targetPath)
         return __divide__(
             *__calculateSuccess__([
                 plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyStatus(
-                    companiesUnderStateObject.companies), './plots/{}_company_status.png'.format(basename(targetPath)[:-4]), 'Status of Companies in West Bengal'),
+                    companiesUnderState.companies), './plots/{}_company_status.png'.format(basename(targetPath)[:-4]), 'Status of Companies in West Bengal'),
                 plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyClass(
-                    companiesUnderStateObject.companies), './plots/{}_company_class.png'.format(basename(targetPath)[:-4]), 'Class of Companies in West Bengal'),
+                    companiesUnderState.companies), './plots/{}_company_class.png'.format(basename(targetPath)[:-4]), 'Class of Companies in West Bengal'),
                 plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyCategory(
-                    companiesUnderStateObject.companies), './plots/{}_company_category.png'.format(basename(targetPath)[:-4]), 'Category of Companies in West Bengal')
+                    companiesUnderState.companies), './plots/{}_company_category.png'.format(basename(targetPath)[:-4]), 'Category of Companies in West Bengal'),
+                plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanySubCategory(
+                    companiesUnderState.companies), './plots/{}_company_subCategory.png'.format(basename(targetPath)[:-4]), 'SubCategory of Companies in West Bengal'),
+                plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyPrincipalBusinessActivity(
+                    companiesUnderState.companies), './plots/{}_company_principalBusinessActivity.png'.format(basename(targetPath)[:-4]), 'Principal Business Activity of Companies in West Bengal')
             ])
         )  # calculating rate of success of these operation(s)
     except Exception:

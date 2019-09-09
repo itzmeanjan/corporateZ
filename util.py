@@ -74,6 +74,28 @@ def categorizeAsPerCompanyCategory(dataSet):
     return reduce(lambda acc, cur: dict([(cur.category, 1)] + [(k, v) for k, v in acc.items()]) if cur.category not in acc else dict(((k, v + 1) if k == cur.category else (k, v) for k, v in acc.items())), dataSet, {})
 
 
+'''
+    Takes a list of all companies present in one State ( instances of model.corporateStat.Company )
+    as argument & returns a Dict[str, int] holding count of all companies of a
+    certain state, categorzied as per their SUB_CATEGORY, which is to be used for plotting a PIE chart.
+'''
+
+
+def categorizeAsPerCompanySubCategory(dataSet):
+    return reduce(lambda acc, cur: dict([(cur.subCategory, 1)] + [(k, v) for k, v in acc.items()]) if cur.subCategory not in acc else dict(((k, v + 1) if k == cur.subCategory else (k, v) for k, v in acc.items())), dataSet, {})
+
+
+'''
+    Takes a list of all companies present in one State ( instances of model.corporateStat.Company )
+    as argument & returns a Dict[str, int] holding count of all companies of a
+    certain state, categorzied as per their PRINCIPAL_BUSINESS_ACTIVITY, which is to be used for plotting a PIE chart.
+'''
+
+
+def categorizeAsPerCompanyPrincipalBusinessActivity(dataSet):
+    return reduce(lambda acc, cur: dict([(cur.principalBusinessActivity, 1)] + [(k, v) for k, v in acc.items()]) if cur.principalBusinessActivity not in acc else dict(((k, v + 1) if k == cur.principalBusinessActivity else (k, v) for k, v in acc.items())), dataSet, {})
+
+
 if __name__ == '__main__':
     print('[!]This module is expected to be used as a backend handler')
     exit(0)

@@ -44,5 +44,43 @@ Following PIE chart shows various companies categorized by their CATEGORY _( as 
 ![companies_categorized_by_category_in_west_bengal](plots/mca_westbengal_21042018_company_category.png)
 
 ---
+### Sub-Category of Companies
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in West Bengal, India.
+- Non-govt company ( 199254 )
+- Guarantee and Association comp ( 225 )
+- Subsidiary of Foreign Company ( 123 )
+- State Govt company ( 87 )
+- Union Govt company ( 45 )
+- NA ( 18 )
+- NON-GOVT COMPANY ( 1 )
+
+![companies_categorized_by_subCategory_in_west_bengal](plots/mca_westbengal_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in West Bengal, India.
+- Trading ( 33.91% )
+- Business Services ( 16.26% )
+- Real Estate and Renting ( 10.65% )
+- Construction ( 7.75% )
+- Manufacturing (Metals & Chemicals and products thereof) ( 6.75% )
+- Finance ( 5.52% )
+- Manufacturing (Machinery & Equipments) ( 3.12% )
+- Community personal & Social Services ( 2.93% )
+- Agriculture and Allied Activities ( 2.46% )
+- Transport storage and Communications ( 2.35% )
+- Manufacturing (Food stuffs) ( 2.33% )
+- Manufacturing (Textiles) ( 2.17% )
+- Manufacturing (Paper & Paper products Publishing printing and reproduction of recorded media) ( 1.12% )
+- Mining & Quarrying ( 0.70% )
+- Manufacturing (Others) ( 0.62% )
+- Manufacturing (Leather & products thereof) ( 0.41% )
+- Electricity Gas & Water companies ( 0.37% )
+- Manufacturing (Wood Products) ( 0.28% )
+- Insurance ( 0.07% )
+- OTHERS ( 0.06% )
+- Others ( 0.05% )
+
+![companies_categorized_by_principalBusinessActivity_in_west_bengal](plots/mca_westbengal_21042018_company_principalBusinessActivity.png)
 
 **More to come ...** :wink:
