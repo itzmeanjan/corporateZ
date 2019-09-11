@@ -88,7 +88,7 @@ class CompaniesUnderState:
             # which is to be processed for creating an instance of Company class
             with open(targetPath, mode='r', encoding='ISO-8859-1') as fd:
                 companiesUnderStateObject = CompaniesUnderState(
-                    state, [Company(*__fixCommaIssueInAddress__(line).split(',')[:-2]) for line in fd.readlines()[1:]])
+                    state, (Company(*__fixCommaIssueInAddress__(line).split(',')[:-2]) for line in fd.readlines()[1:]))
         except Exception:
             companiesUnderStateObject = None
         finally:

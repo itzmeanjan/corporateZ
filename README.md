@@ -2,7 +2,6 @@
 Data analysis done on Ministry of Corporate Affairs, Govt. of India's open data to get deeper insight, with :heart:
 
 ## Analysis of M.C.A. Data for _West Bengal_
----
 ### Status of Companies
 Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies in West Bengal, India.
 - Active ( 136423 )
@@ -82,5 +81,11 @@ Following PIE chart shows various companies categorized by their PRINCIPAL_BUSIN
 - Others ( 0.05% )
 
 ![companies_categorized_by_principalBusinessActivity_in_west_bengal](plots/mca_westbengal_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year
+Companies registered in West Bengal gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_west_bengal](plots/mca_westbengal_21042018_company_dateOfRegistration.png)
 
 **More to come ...** :wink:

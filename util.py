@@ -5,6 +5,7 @@ from os.path import dirname, exists
 from os import mkdir
 try:
     from matplotlib import pyplot as plt
+    from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 except ImportError as e:
     print('[!]Module Unavailable : {}'.format(str(e)))
     exit(1)
@@ -22,6 +23,12 @@ def plotCategorizedCompanyDataForACertainState(dataSet, targetPath, title):
         if(not exists(dirname(targetPath))):
             # creating target directory if not existing already
             mkdir(dirname(targetPath))
+        font = {
+            'family': 'serif',
+            'color': '#264040',
+            'weight': 'normal',
+            'size': 12
+        }
         labels = sorted(dataSet, key=lambda elem:
                         dataSet[elem], reverse=True)
         # this is the actual data to be plotted
@@ -29,8 +36,8 @@ def plotCategorizedCompanyDataForACertainState(dataSet, targetPath, title):
         # figure on which pie chart to be drawn ( of size 2400x1200 )
         plt.figure(figsize=(24, 12), dpi=100)
         patches, _ = plt.pie(data)  # plotting pie chart
-        plt.legend(patches, labels, loc='best')
-        plt.title(title)
+        plt.legend(patches, labels, loc='best', fontsize='medium')
+        plt.title(title, fontdict=font)
         plt.axis('equal')
         plt.tight_layout()
         plt.savefig(targetPath, bbox_inches='tight',
@@ -94,6 +101,61 @@ def categorizeAsPerCompanySubCategory(dataSet):
 
 def categorizeAsPerCompanyPrincipalBusinessActivity(dataSet):
     return reduce(lambda acc, cur: dict([(cur.principalBusinessActivity, 1)] + [(k, v) for k, v in acc.items()]) if cur.principalBusinessActivity not in acc else dict(((k, v + 1) if k == cur.principalBusinessActivity else (k, v) for k, v in acc.items())), dataSet, {})
+
+
+'''
+    Plots a graph of year of registration vs. #-of companies registered
+    in that certain year, while using dataset obtained from function defined just below it.
+'''
+
+
+def plotCompanyRegistrationDateWiseCategorizedData(dataSet, targetPath, title):
+    try:
+        if(not exists(dirname(targetPath))):
+            # creating target directory if not existing already
+            mkdir(dirname(targetPath))
+        # style `ggplot` is in use
+        with plt.style.context('ggplot'):
+            font = {
+                'family': 'serif',
+                'color': '#264040',
+                'weight': 'normal',
+                'size': 12
+            }
+            # a range from `first when a company was registered` to `nearest year upto which we have any status`
+            x = range(min(dataSet), max(dataSet) + 1)
+            y = [dataSet.get(i, 0) for i in x]
+            plt.figure(figsize=(24, 12), dpi=100)
+            # creating major x-tick locator every 10 years
+            plt.gca().xaxis.set_major_locator(MultipleLocator(10))
+            # creating x-tick formatter using only year name
+            plt.gca().xaxis.set_major_formatter(FormatStrFormatter('%d'))
+            # setting minor x-tick locator every 1 year
+            plt.gca().xaxis.set_minor_locator(MultipleLocator(1))
+            plt.plot(x, y, 'r-', lw=1.5)
+            plt.xlabel('Year', fontdict=font, labelpad=16)
+            plt.ylabel('# of Companies Registered', fontdict=font, labelpad=16)
+            plt.title(title, fontdict=font)
+            plt.savefig(targetPath, bbox_inches='tight', pad_inches=.5)
+            plt.close()
+        return True
+    except Exception:
+        return False
+
+
+'''
+    Filters out those companies which has `dateOfRegistration` field None
+    & classifies remaining ones using year of registration
+
+    So finally we get a Dict[int, int], holding a mapping between
+    year of registration & #-of companies registered in that year,
+    which is going to be used by above function for plotting a graph.
+'''
+
+
+def categorizeAsPerCompanyDateOfRegistration(dataSet):
+    return reduce(lambda acc, cur: dict([(cur.dateOfRegistration.year, 1)] + [(k, v) for k, v in acc.items()]) if cur.dateOfRegistration.year not in acc else dict(((k, v + 1) if k == cur.dateOfRegistration.year else (k, v) for k, v in acc.items())),
+                  filter(lambda v: v.dateOfRegistration is not None, dataSet), {})
 
 
 if __name__ == '__main__':

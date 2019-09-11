@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 from re import compile as reg_compile
-from os.path import basename
+from os.path import basename, join
+from os import listdir
 from functools import reduce
 try:
     from model.corporateStat import CompaniesUnderState
@@ -10,8 +11,17 @@ except ImportError as e:
     print('[!]Module Unavailable: {}'.format(str(e)))
     exit(1)
 
+'''
+    Reads from each CSV datafiles present in `./data/`,
+    holding Ministry of Corporate Affair's ( M.C.A. ) Company Data
+    for a certain state & generates 6 plots for each of them.
 
-def main(targetPath='./data/mca_westbengal_21042018.csv') -> float:
+    5 of them will be PIE charts & 1 will be simple plotting 
+    of registration year vs. #-of companies registered in that year.
+'''
+
+
+def main(targetPath='./data/') -> float:
     '''
         Given a CSV data file name, it'll simply extract
         State name using Regular Expression(s)
@@ -37,21 +47,31 @@ def main(targetPath='./data/mca_westbengal_21042018.csv') -> float:
         return reduce(lambda acc, cur: (acc[0] + 1, acc[1]+1) if cur else (acc[0], acc[1]+1), result, (0, 0))
 
     try:
-        companiesUnderState = CompaniesUnderState.importFromCSV(
-            __extract_state__(basename(targetPath)), targetPath=targetPath)
         return __divide__(
-            *__calculateSuccess__([
-                plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyStatus(
-                    companiesUnderState.companies), './plots/{}_company_status.png'.format(basename(targetPath)[:-4]), 'Status of Companies in West Bengal'),
-                plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyClass(
-                    companiesUnderState.companies), './plots/{}_company_class.png'.format(basename(targetPath)[:-4]), 'Class of Companies in West Bengal'),
-                plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyCategory(
-                    companiesUnderState.companies), './plots/{}_company_category.png'.format(basename(targetPath)[:-4]), 'Category of Companies in West Bengal'),
-                plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanySubCategory(
-                    companiesUnderState.companies), './plots/{}_company_subCategory.png'.format(basename(targetPath)[:-4]), 'SubCategory of Companies in West Bengal'),
-                plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyPrincipalBusinessActivity(
-                    companiesUnderState.companies), './plots/{}_company_principalBusinessActivity.png'.format(basename(targetPath)[:-4]), 'Principal Business Activity of Companies in West Bengal')
-            ])
+            *__calculateSuccess__(
+                reduce(lambda acc, cur: [
+                    plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyStatus(
+                        CompaniesUnderState.importFromCSV(
+                            __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_status.png'.format(basename(cur)[:-4]), 'Status of Companies in {}'.format(__extract_state__(basename(cur)))),
+                    plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyClass(
+                        CompaniesUnderState.importFromCSV(
+                            __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_class.png'.format(basename(cur)[:-4]), 'Class of Companies in {}'.format(__extract_state__(basename(cur)))),
+                    plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyCategory(
+                        CompaniesUnderState.importFromCSV(
+                            __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_category.png'.format(basename(cur)[:-4]), 'Category of Companies in {}'.format(__extract_state__(basename(cur)))),
+                    plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanySubCategory(
+                        CompaniesUnderState.importFromCSV(
+                            __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_subCategory.png'.format(basename(cur)[:-4]), 'SubCategory of Companies in {}'.format(__extract_state__(basename(cur)))),
+                    plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyPrincipalBusinessActivity(
+                        CompaniesUnderState.importFromCSV(
+                            __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_principalBusinessActivity.png'.format(basename(cur)[:-4]), 'Principal Business Activity of Companies in {}'.format(__extract_state__(basename(cur)))),
+                    plotCompanyRegistrationDateWiseCategorizedData(categorizeAsPerCompanyDateOfRegistration(
+                        CompaniesUnderState.importFromCSV(
+                            __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_dateOfRegistration.png'.format(basename(cur)[:-4]), 'Registration of Companies in {}'.format(__extract_state__(basename(cur))))
+                ] + acc,
+                    map(lambda v: join(targetPath, v),
+                        filter(lambda v: v.endswith('csv'), listdir(targetPath))), [])
+            )
         )  # calculating rate of success of these operation(s)
     except Exception:
         return 0.0
