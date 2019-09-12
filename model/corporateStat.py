@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 
 from datetime import date
-from functools import reduce
-from re import compile as regex_compile
+from csv import reader as csvReader
 
 '''
     This class is expected to hold data for a certain company registered
@@ -38,12 +37,16 @@ class Company:
     '''
     @property
     def dateOfRegistration(self):
-        return None if self._dateOfRegistration.lower() == 'na' else date(*[int(i) for i in self._dateOfRegistration.split('-')[-1::-1]])
+        try:
+            return date(*[int(i) for i in self._dateOfRegistration.split('-')[-1::-1]])
+        except Exception:
+            return None
 
 
 '''
-    Designed to hold a list of all companies present under one certain State of India
-
+    Designed to hold a stream ( generating all companies, one time subscription ) 
+    present under one certain State of India
+    
     State, about which we're currently talking, can also be looked up from an instance of this class
 '''
 
@@ -65,22 +68,9 @@ class CompaniesUnderState:
             we can't just use `,` ( comma ) as field seperator in CSV.
 
             Cause there's `,` ( comma ) present in unexpected places, so
-            what we're going to do is replace all those unexpected `,` ( commas )
-            using '' ( blank string ).
-
-            One good thing that makes our job easier, is that all malformed ( comma added ) substrings 
-            are places within double quotations.
-
-            So we're going to use regular expression for extracting all those substrings,
-            which are having `,` within it, and replace that using properly formatted substring(s)
-
-            And we finally construct properly formatted string, using `reduce()`.
+            what we're going to handle that using python's very own `csv` module,
+            while using `excel` as dialect.
         '''
-        def __fixCommaIssueInAddress__(stringToFix):
-            # this regex will find out a certain substring ( within a string ), present under double quotation
-            # multiple of them can be extracted using re.findall() method
-            return reduce(lambda acc, cur: acc.replace(
-                cur, cur.replace(',', '').replace('"', '')), regex_compile(r'\"([^"]*)\"').findall(stringToFix), stringToFix)
 
         companiesUnderStateObject = None  # this is what's to be returned
         try:
@@ -88,7 +78,7 @@ class CompaniesUnderState:
             # which is to be processed for creating an instance of Company class
             with open(targetPath, mode='r', encoding='ISO-8859-1') as fd:
                 companiesUnderStateObject = CompaniesUnderState(
-                    state, (Company(*__fixCommaIssueInAddress__(line).split(',')[:-2]) for line in fd.readlines()[1:]))
+                    state, (Company(*i[:-2]) for i in csvReader(fd.readlines()[1:])))
         except Exception:
             companiesUnderStateObject = None
         finally:

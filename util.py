@@ -3,6 +3,7 @@
 from functools import reduce
 from os.path import dirname, exists
 from os import mkdir
+from time import localtime, time
 try:
     from matplotlib import pyplot as plt
     from matplotlib.ticker import MultipleLocator, FormatStrFormatter
@@ -123,7 +124,9 @@ def plotCompanyRegistrationDateWiseCategorizedData(dataSet, targetPath, title):
                 'size': 12
             }
             # a range from `first when a company was registered` to `nearest year upto which we have any status`
-            x = range(min(dataSet), max(dataSet) + 1)
+            # filtering out improper years ( may be higher than current year ), lets us clean dataset, so that things go smooth
+            x = range(min(dataSet), max(
+                filter(lambda v: v < (localtime(time()).tm_year + 1), dataSet)) + 1)
             y = [dataSet.get(i, 0) for i in x]
             plt.figure(figsize=(24, 12), dpi=100)
             # creating major x-tick locator every 10 years

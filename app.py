@@ -73,7 +73,8 @@ def main(targetPath='./data/') -> float:
                         filter(lambda v: v.endswith('csv'), listdir(targetPath))), [])
             )
         )  # calculating rate of success of these operation(s)
-    except Exception:
+    except Exception as e:
+        print(e)
         return 0.0
 
 
