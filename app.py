@@ -7,6 +7,7 @@ from functools import reduce
 try:
     from model.corporateStat import CompaniesUnderState
     from util import *
+    from utilMultiState import plotAllCompaniesByStateUsingStatus
 except ImportError as e:
     print('[!]Module Unavailable: {}'.format(str(e)))
     exit(1)
@@ -16,7 +17,7 @@ except ImportError as e:
     holding Ministry of Corporate Affair's ( M.C.A. ) Company Data
     for a certain state & generates 6 plots for each of them.
 
-    5 of them will be PIE charts & 1 will be simple plotting 
+    5 of them will be PIE charts & 1 will be simple plotting
     of registration year vs. #-of companies registered in that year.
 '''
 
@@ -46,7 +47,12 @@ def main(targetPath='./data/') -> float:
     def __calculateSuccess__(result):
         return reduce(lambda acc, cur: (acc[0] + 1, acc[1]+1) if cur else (acc[0], acc[1]+1), result, (0, 0))
 
+    def __getAllPossibleCompanyStatus__(companyDataSet):
+        return reduce(lambda acc, cur: acc.union(set(
+            companyDataSet[cur].keys())), companyDataSet, set())
+
     try:
+        '''
         return __divide__(
             *__calculateSuccess__(
                 reduce(lambda acc, cur: [
@@ -73,8 +79,20 @@ def main(targetPath='./data/') -> float:
                         filter(lambda v: v.endswith('csv'), listdir(targetPath))), [])
             )
         )  # calculating rate of success of these operation(s)
-    except Exception as e:
-        print(e)
+        '''
+        allCompanyStatus = dict(map(lambda v:
+                                    (__extract_state__(basename(v)), categorizeAsPerCompanyStatus(CompaniesUnderState.importFromCSV(
+                                        __extract_state__(basename(v)), targetPath=v).companies)),
+                                    map(lambda v: join(targetPath, v),
+                                        filter(lambda v: v.endswith('csv'), listdir(targetPath)))))
+        return __divide__(
+            *__calculateSuccess__(
+                map(lambda v: plotAllCompaniesByStateUsingStatus(
+                    allCompanyStatus, v,
+                    './allCompanyStatusPlots/mca_all_{}_companies.png'.format(v.replace(' ', '_').lower())),
+                    __getAllPossibleCompanyStatus__(allCompanyStatus))
+            ))
+    except Exception:
         return 0.0
 
 

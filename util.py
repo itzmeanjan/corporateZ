@@ -144,6 +144,7 @@ def plotCompanyRegistrationDateWiseCategorizedData(dataSet, targetPath, title):
             plt.xlabel('Year', fontdict=font, labelpad=16)
             plt.ylabel('# of Companies Registered', fontdict=font, labelpad=16)
             plt.title(title, fontdict=font)
+            plt.tight_layout()
             plt.savefig(targetPath, bbox_inches='tight', pad_inches=.5)
             plt.close()
         return True
