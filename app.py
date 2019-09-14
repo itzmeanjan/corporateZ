@@ -4,10 +4,11 @@ from re import compile as reg_compile
 from os.path import basename, join
 from os import listdir
 from functools import reduce
+from itertools import chain
 try:
     from model.corporateStat import CompaniesUnderState
     from util import *
-    from utilMultiState import plotAllCompaniesByStateUsingStatus
+    from utilMultiState import plotAllCompaniesByStateUsingStatus, extractAllCompanyEmailProvider
 except ImportError as e:
     print('[!]Module Unavailable: {}'.format(str(e)))
     exit(1)
@@ -79,7 +80,6 @@ def main(targetPath='./data/') -> float:
                         filter(lambda v: v.endswith('csv'), listdir(targetPath))), [])
             )
         )  # calculating rate of success of these operation(s)
-        '''
         allCompanyStatus = dict(map(lambda v:
                                     (__extract_state__(basename(v)), categorizeAsPerCompanyStatus(CompaniesUnderState.importFromCSV(
                                         __extract_state__(basename(v)), targetPath=v).companies)),
@@ -92,6 +92,14 @@ def main(targetPath='./data/') -> float:
                     './allCompanyStatusPlots/mca_all_{}_companies.png'.format(v.replace(' ', '_').lower())),
                     __getAllPossibleCompanyStatus__(allCompanyStatus))
             ))
+        '''
+        allCompanies = chain(*list(map(
+            lambda v: CompaniesUnderState.importFromCSV(
+                __extract_state__(v), targetPath=join(targetPath, v)).companies,
+            filter(
+                lambda v: v.endswith('csv'), listdir(targetPath)))))
+        print(extractAllCompanyEmailProvider(allCompanies))
+        return 1.0
     except Exception:
         return 0.0
 

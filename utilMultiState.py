@@ -5,6 +5,8 @@ from typing import Dict
 from functools import reduce
 from os.path import exists, dirname
 from os import mkdir
+from re import compile as reg_compile
+from itertools import chain
 try:
     from matplotlib import pyplot as plt
     from matplotlib.ticker import MultipleLocator, PercentFormatter
@@ -70,6 +72,35 @@ def plotAllCompaniesByStateUsingStatus(dataSet: Dict, status: str, targetPath: s
         return True
     except Exception:
         return False
+
+
+'''
+    expected to take a chain of generator(s),
+    each of them generating a stream of model.corporateStat.Company object(s),
+    located in a certain State of India.
+
+    So this chain will finally generate a list of all companies
+    registered in India ( as of 21/04/2018 ), when iterated over
+
+    And finally giving us a Dict[str, int], holding a distribution
+    of email provider(s) & their corresponding count
+'''
+
+
+def extractAllCompanyEmailProvider(dataStream: chain) -> Dict[str, int]:
+    def __getEmailProvider__(email: str) -> str:
+        matchObj = reg.search(email)
+        return matchObj.group().replace('@', '').lower() if(matchObj) else 'NA'
+
+    def __updateCounter__(holder: Dict, email: str) -> Dict:
+        return dict([(email, 1)] + [(k, v) for k, v in holder.items()]) if email not in holder else dict([(k, v + 1) if k == email else (k, v) for k, v in holder.items()])
+
+    try:
+        reg = reg_compile(r'(@.+)')
+        return reduce(lambda acc, cur: __updateCounter__(
+            acc, __getEmailProvider__(cur.email)), dataStream, {})
+    except Exception:
+        return None
 
 
 if __name__ == '__main__':
