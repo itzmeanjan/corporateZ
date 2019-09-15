@@ -74,6 +74,32 @@ def plotAllCompaniesByStateUsingStatus(dataSet: Dict, status: str, targetPath: s
         return False
 
 
+def plotTopEmailProvidersShare(dataSet: Dict[str, int], total: int, title: str, targetPath: str) -> bool:
+    try:
+        wedgeSizes = [dataSet[i] for i in dataSet]
+        labels = ['{} ( {:.2f} % )'.format(i.capitalize(), dataSet[i]*100 / total)
+                  for i in dataSet]
+        font = {
+            'family': 'serif',
+            'color': '#264040',
+            'weight': 'normal',
+            'size': 12
+        }
+        plt.figure(figsize=(24, 12), dpi=100)
+        patches, _ = plt.pie(wedgeSizes)
+        plt.legend(patches, labels, loc='best', fontsize='medium')
+        plt.title(title, fontdict=font)
+        plt.axis('equal')
+        plt.tight_layout()
+        plt.savefig(targetPath, bbox_inches='tight',
+                    pad_inches=.5)
+        plt.close()
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+
 '''
     expected to take a chain of generator(s),
     each of them generating a stream of model.corporateStat.Company object(s),
@@ -87,11 +113,12 @@ def plotAllCompaniesByStateUsingStatus(dataSet: Dict, status: str, targetPath: s
 '''
 
 
-def extractAllCompanyEmailProvider(dataStream: map) -> Dict[str, int]:
+def extractAllCompanyEmailProvider(dataStream: map) -> (Dict[str, int], int):
     # Extracts email service provider's name using regular expression
+
     def __getEmailProvider__(email: str) -> str:
         matchObj = reg.search(email)
-        return matchObj.group().replace('@', '').lower() if(matchObj) else None
+        return matchObj.group().lower() if(matchObj) else None
 
     # Increments usage count email service provider & returns updated Dictionary
     def __updateCounter__(holder: Dict[str, int], email: str) -> Dict[str, int]:
@@ -104,9 +131,11 @@ def extractAllCompanyEmailProvider(dataStream: map) -> Dict[str, int]:
         '''
 
     # Keeps only top 5 elements ( having highest usage count ) in dictionary
-    def __cleanupCounter__(holder: Dict[str, int]) -> Dict[str, int]:
+    def __cleanupCounter__(holder: Dict[str, int], count: int, findTotal: bool = True) -> Dict[str, int]:
+        nonlocal total
+        total += sum(holder.values()) if findTotal else 0
         return dict(map(lambda v: (v, holder[v]), sorted(
-            holder, key=lambda v: holder[v], reverse=True)[:5]))
+            holder, key=lambda v: holder[v], reverse=True)[:count]))
 
     # merges two usage count holder dictionaries (one holding everything calculated upto this point )
     # and another one holding record for a certain state ( which we just processed )
@@ -118,14 +147,15 @@ def extractAllCompanyEmailProvider(dataStream: map) -> Dict[str, int]:
             second, first)
 
     try:
-        reg = reg_compile(r'(@.+)')
+        total = 0
+        reg = reg_compile(r'(?<=@)[^.]+(?=\.)')
         # processes each state of India at a time & extracts top 5
         # email service providers, finally we calculate top 5
         # email service providers used by companies spread across different states of India
         return __cleanupCounter__(reduce(lambda acc, cur:
                                          __mergeTwoDicts__(acc, __cleanupCounter__(
                                              reduce(lambda acc, cur: __updateCounter__(
-                                                 acc, __getEmailProvider__(cur.email)), cur, {}))), dataStream, {}))
+                                                 acc, __getEmailProvider__(cur.email)), cur, {}), 10)), dataStream, {}), 10, findTotal=False), total
     except Exception:
         return None
 

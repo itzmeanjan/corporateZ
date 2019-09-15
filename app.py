@@ -8,7 +8,7 @@ from itertools import chain
 try:
     from model.corporateStat import CompaniesUnderState
     from util import *
-    from utilMultiState import plotAllCompaniesByStateUsingStatus, extractAllCompanyEmailProvider
+    from utilMultiState import *
 except ImportError as e:
     print('[!]Module Unavailable: {}'.format(str(e)))
     exit(1)
@@ -93,13 +93,18 @@ def main(targetPath='./data/') -> float:
                     __getAllPossibleCompanyStatus__(allCompanyStatus))
             ))
         '''
-        allCompanies = map(
-            lambda v: CompaniesUnderState.importFromCSV(
-                __extract_state__(v), targetPath=join(targetPath, v)).companies,
-            filter(
-                lambda v: v.endswith('csv'), listdir(targetPath)))
-        print(extractAllCompanyEmailProvider(allCompanies))
-        return 1.0
+        return __divide__(
+            *__calculateSuccess__(
+                [plotTopEmailProvidersShare(
+                    *extractAllCompanyEmailProvider(
+                        map(
+                            lambda v: CompaniesUnderState.importFromCSV(
+                                __extract_state__(v),
+                                targetPath=join(targetPath, v)).companies,
+                            filter(
+                                lambda v: v.endswith('csv'), listdir(targetPath)))),
+                    'Email Service used by Companies in India',
+                    './plots/mca_email_service_used_by_companies.png')]))
     except Exception:
         return 0.0
 
