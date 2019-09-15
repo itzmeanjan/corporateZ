@@ -87,18 +87,45 @@ def plotAllCompaniesByStateUsingStatus(dataSet: Dict, status: str, targetPath: s
 '''
 
 
-def extractAllCompanyEmailProvider(dataStream: chain) -> Dict[str, int]:
+def extractAllCompanyEmailProvider(dataStream: map) -> Dict[str, int]:
+    # Extracts email service provider's name using regular expression
     def __getEmailProvider__(email: str) -> str:
         matchObj = reg.search(email)
-        return matchObj.group().replace('@', '').lower() if(matchObj) else 'NA'
+        return matchObj.group().replace('@', '').lower() if(matchObj) else None
 
-    def __updateCounter__(holder: Dict, email: str) -> Dict:
-        return dict([(email, 1)] + [(k, v) for k, v in holder.items()]) if email not in holder else dict([(k, v + 1) if k == email else (k, v) for k, v in holder.items()])
+    # Increments usage count email service provider & returns updated Dictionary
+    def __updateCounter__(holder: Dict[str, int], email: str) -> Dict[str, int]:
+        if(email):
+            holder.update({email: holder.get(email, 0) + 1})
+        return holder
+        '''
+        return holder if not email else dict([(email, 1)] + [(k, v) for k, v in holder.items()]) if email not in holder else dict(
+            [(k, v + 1) if k == email else (k, v) for k, v in holder.items()])
+        '''
+
+    # Keeps only top 5 elements ( having highest usage count ) in dictionary
+    def __cleanupCounter__(holder: Dict[str, int]) -> Dict[str, int]:
+        return dict(map(lambda v: (v, holder[v]), sorted(
+            holder, key=lambda v: holder[v], reverse=True)[:5]))
+
+    # merges two usage count holder dictionaries (one holding everything calculated upto this point )
+    # and another one holding record for a certain state ( which we just processed )
+    # will return merged one, which is to be used as next accumulated dictionary,
+    # holding everything upto this point
+    def __mergeTwoDicts__(first: Dict[str, int], second: Dict[str, int]) -> Dict[str, int]:
+        return reduce(lambda acc, cur: dict(
+            [(cur, second[cur])] + [(k, v) for k, v in acc.items()]) if cur not in acc else dict([(k, v + second[cur]) if k == cur else (k, v) for k, v in acc.items()]),
+            second, first)
 
     try:
         reg = reg_compile(r'(@.+)')
-        return reduce(lambda acc, cur: __updateCounter__(
-            acc, __getEmailProvider__(cur.email)), dataStream, {})
+        # processes each state of India at a time & extracts top 5
+        # email service providers, finally we calculate top 5
+        # email service providers used by companies spread across different states of India
+        return __cleanupCounter__(reduce(lambda acc, cur:
+                                         __mergeTwoDicts__(acc, __cleanupCounter__(
+                                             reduce(lambda acc, cur: __updateCounter__(
+                                                 acc, __getEmailProvider__(cur.email)), cur, {}))), dataStream, {}))
     except Exception:
         return None
 

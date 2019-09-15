@@ -93,11 +93,11 @@ def main(targetPath='./data/') -> float:
                     __getAllPossibleCompanyStatus__(allCompanyStatus))
             ))
         '''
-        allCompanies = chain(*list(map(
+        allCompanies = map(
             lambda v: CompaniesUnderState.importFromCSV(
                 __extract_state__(v), targetPath=join(targetPath, v)).companies,
             filter(
-                lambda v: v.endswith('csv'), listdir(targetPath)))))
+                lambda v: v.endswith('csv'), listdir(targetPath)))
         print(extractAllCompanyEmailProvider(allCompanies))
         return 1.0
     except Exception:
