@@ -1,5 +1,11 @@
 # corporateZ
 Data analysis done on Ministry of Corporate Affairs **( M.C.A. )**, Govt. of India's open data to get deeper insight, with :heart:
+
+## Data Source
+All data upon which following analysis work will be done, is collected from [here](https://data.gov.in/).
+
+Dataset upon which I'm working, was last updated on _21-04-2018_ ( as mentioned on Open Data Portal of India ).
+
 ## Analysis of M.C.A. Data for _Uttarakhand_
 ### Status of Companies in Uttarakhand
 Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies regsitered in Uttarakhand, India.
@@ -272,5 +278,13 @@ Below is a list of company statuses, which show percentage of its presence in di
 ![amalgamated_companies_all_over_India](allCompanyStatusPlots/mca_all_amalgamated_companies.png)
 ### Under Liquidation
 ![under_liquidation_companies_all_over_India](allCompanyStatusPlots/mca_all_under_liquidation_companies.png)
+
+## Email Service(s) used by Companies in India
+Following PIE chart tries to pictorially depict, which email service provider(s) are in use at which percentage by **1407239**
+companies _( for which we had Ministry of Corporate Affairs, Govt. of India open data regarding all companies registered in various states of India )_ spread across several parts of India.
+
+For keeping things simple, I extracted top 10 email service provider(s) being used by Companies & generated a PIE chart for them, showing their percentage of usage.
+
+![email_service_used_by_companies_in_India](./plots/mca_email_service_used_by_companies.png)
 
 **More to come ...** :wink:
