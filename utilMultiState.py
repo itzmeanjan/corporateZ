@@ -3,7 +3,7 @@
 
 from typing import Dict
 from functools import reduce
-from os.path import exists, dirname
+from os.path import exists, dirname, basename
 from os import mkdir
 from re import compile as reg_compile
 from itertools import chain
@@ -105,8 +105,7 @@ def plotTopEmailProvidersShare(dataSet: Dict[str, int], total: int, title: str, 
                     pad_inches=.5)
         plt.close()
         return True
-    except Exception as e:
-        print(e)
+    except Exception:
         return False
 
 
@@ -175,6 +174,44 @@ def extractAllCompanyEmailProvider(dataStream: map) -> (Dict[str, int], int):
                                                  acc, __getEmailProvider__(cur.email)), cur, {}), 10)), dataStream, {}), 10, findTotal=False), total
     except Exception:
         return None
+
+
+'''
+    Plots `How many companies are registered under which RoC` data,
+    in a PIE chart, which is exported into a target file
+'''
+
+
+def plotAllRoCStatistics(data: Dict[str, int], targetPath: str) -> bool:
+    try:
+        # removing those records which didn't have any useful information regarding their RoC
+        data.pop('NA', None)
+        y = sorted(data, key=lambda e: data[e], reverse=True)
+        y_pos = range(len(y))
+        x = [data[i] for i in y]
+        with plt.style.context('ggplot'):
+            font = {
+                'family': 'serif',
+                'style': 'normal',
+                'color': '#264040',
+                'weight': 'regular',
+                'size': 16
+            }
+            plt.figure(figsize=(24, 12), dpi=100)
+            plt.barh(y_pos, x, align='center', color='cornflowerblue',
+                     lw=1.6, joinstyle='miter')
+            plt.gca().yaxis.set_ticks(y_pos)
+            plt.gca().yaxis.set_ticklabels(y)
+            plt.xlabel('# of Companies Registered', fontdict=font, labelpad=16)
+            plt.title('Company Registration under RoC(s)',
+                      fontdict=font, pad=12)
+            plt.tight_layout()
+            plt.savefig(targetPath, bbox_inches='tight',
+                        pad_inches=.5, dpi=100, format=basename(targetPath).split('.')[-1])
+            plt.close()
+        return True
+    except Exception:
+        return False
 
 
 '''

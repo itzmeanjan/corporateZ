@@ -105,13 +105,22 @@ def main(targetPath='./data/') -> float:
                     'Email Service used by Companies in India',
                     './plots/mca_email_service_used_by_companies.png')]))
         '''
-        print(extractRoCStatForAllCompanies(map(
-            lambda v: CompaniesUnderState.importFromCSV(
-                __extract_state__(v),
-                targetPath=join(targetPath, v)).companies,
-            filter(
-                lambda v: v.endswith('csv'), listdir(targetPath)))))
-        return 1.0
+        return __divide__(
+            *__calculateSuccess__(
+                [
+                    plotAllRoCStatistics(
+                        extractRoCStatForAllCompanies(
+                            map(
+                                lambda v: CompaniesUnderState.importFromCSV(
+                                    __extract_state__(v),
+                                    targetPath=join(targetPath, v)).companies,
+                                filter(
+                                    lambda v: v.endswith('csv'), listdir(targetPath)))),
+                        './plots/mca_company_registration_under_roc.png'
+                    )
+                ]
+            )
+        )
     except Exception:
         return 0.0
 
