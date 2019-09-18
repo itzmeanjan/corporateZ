@@ -74,6 +74,16 @@ def plotAllCompaniesByStateUsingStatus(dataSet: Dict, status: str, targetPath: s
         return False
 
 
+'''
+    Plots a PIE chart, showing usage percentage for Top 10 email
+    service providers in India ( only company data I collected
+    from data.gov.in was used )
+
+    So this shows popularity of various email service providers
+    among Indian Companies
+'''
+
+
 def plotTopEmailProvidersShare(dataSet: Dict[str, int], total: int, title: str, targetPath: str) -> bool:
     try:
         wedgeSizes = [dataSet[i] for i in dataSet]
@@ -98,6 +108,22 @@ def plotTopEmailProvidersShare(dataSet: Dict[str, int], total: int, title: str, 
     except Exception as e:
         print(e)
         return False
+
+
+'''
+    Merges two count holder dictionaries (one holding everything calculated upto this point )
+    and another one holding record for a certain state ( which we just processed )
+    will return merged one, which is to be used as next accumulated dictionary,
+    holding everything upto this point
+
+    Can be used for simply merging two Dict[str, int]
+'''
+
+
+def __mergeTwoDicts__(first: Dict[str, int], second: Dict[str, int]) -> Dict[str, int]:
+    return reduce(lambda acc, cur: dict(
+        [(cur, second[cur])] + [(k, v) for k, v in acc.items()]) if cur not in acc else dict([(k, v + second[cur]) if k == cur else (k, v) for k, v in acc.items()]),
+        second, first)
 
 
 '''
@@ -137,15 +163,6 @@ def extractAllCompanyEmailProvider(dataStream: map) -> (Dict[str, int], int):
         return dict(map(lambda v: (v, holder[v]), sorted(
             holder, key=lambda v: holder[v], reverse=True)[:count]))
 
-    # merges two usage count holder dictionaries (one holding everything calculated upto this point )
-    # and another one holding record for a certain state ( which we just processed )
-    # will return merged one, which is to be used as next accumulated dictionary,
-    # holding everything upto this point
-    def __mergeTwoDicts__(first: Dict[str, int], second: Dict[str, int]) -> Dict[str, int]:
-        return reduce(lambda acc, cur: dict(
-            [(cur, second[cur])] + [(k, v) for k, v in acc.items()]) if cur not in acc else dict([(k, v + second[cur]) if k == cur else (k, v) for k, v in acc.items()]),
-            second, first)
-
     try:
         total = 0
         reg = reg_compile(r'(?<=@)[^.]+(?=\.)')
@@ -156,6 +173,23 @@ def extractAllCompanyEmailProvider(dataStream: map) -> (Dict[str, int], int):
                                          __mergeTwoDicts__(acc, __cleanupCounter__(
                                              reduce(lambda acc, cur: __updateCounter__(
                                                  acc, __getEmailProvider__(cur.email)), cur, {}), 10)), dataStream, {}), 10, findTotal=False), total
+    except Exception:
+        return None
+
+
+'''
+    Extracts how many companies are registered under which RoC ( Registrar of Companies ),
+    all over India
+'''
+
+
+def extractRoCStatForAllCompanies(dataStream: map) -> Dict[str, int]:
+    try:
+        return reduce(lambda acc, cur:
+                      __mergeTwoDicts__(acc, reduce(
+                          lambda accInner, curInner:
+                          dict([(curInner.registrarOfCompanies, 1)] + [(k, v) for k, v in accInner.items()]) if curInner.registrarOfCompanies not in accInner else dict([(k, v+1) if k == curInner.registrarOfCompanies else (k, v) for k, v in accInner.items()]), cur, {})),
+                      dataStream, {})
     except Exception:
         return None
 
