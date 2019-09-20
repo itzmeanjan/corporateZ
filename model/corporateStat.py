@@ -31,6 +31,10 @@ class Company:
         self.registrarOfCompanies = roc
         self.email = email
 
+    def __str__(self):
+        super().__str__()
+        return '{} -- {} -- {}'.format(self.name, self.status, self.dateOfRegistration)
+
     '''
         this property is expected to convert dateOfRegistration of this company
         from string to an instance of Date class ( which makes manipulation of Date easier)

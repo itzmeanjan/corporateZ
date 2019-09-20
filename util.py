@@ -5,6 +5,7 @@ from functools import reduce
 from os.path import dirname, exists
 from os import mkdir
 from time import localtime, time
+from re import compile as reg_compile
 try:
     from matplotlib import pyplot as plt
     from matplotlib.ticker import MultipleLocator, FormatStrFormatter
@@ -171,6 +172,32 @@ def plotCompanyRegistrationDateWiseCategorizedData(dataSet: Dict[int, int], targ
 def categorizeAsPerCompanyDateOfRegistration(dataSet) -> Dict[int, int]:
     return reduce(lambda acc, cur: dict([(cur.dateOfRegistration.year, 1)] + [(k, v) for k, v in acc.items()]) if cur.dateOfRegistration.year not in acc else dict(((k, v + 1) if k == cur.dateOfRegistration.year else (k, v) for k, v in acc.items())),
                   filter(lambda v: v.dateOfRegistration is not None, dataSet), {})
+
+
+'''
+    Takes an iterable of model.corporateStat.Company & classifies their
+    count using `Pincode of their Registered Address` ( extracted from Address field )
+
+    Finally a Dict[str, int], holding count of companies registered in different PinCode(s)
+    is returned
+'''
+
+
+def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream) -> Dict[str, int]:
+    def updateCounter(key: str, holder: Dict[str, int]) -> Dict[str, int]:
+        if key:
+            holder.update({key: holder.get(key, 0) + 1})
+        return holder
+
+    def extractPinCodeFromAddress(address: str) -> str:
+        matchObj = reg.search(address)
+        return matchObj.group() if matchObj else None
+
+    reg = reg_compile(r'(\d{6})')  # pincode extraction regular expression
+    return reduce(lambda acc, cur:
+                  updateCounter(
+                      extractPinCodeFromAddress(
+                          cur.registeredOfficeAddress), acc), dataStream, {})
 
 
 if __name__ == '__main__':
