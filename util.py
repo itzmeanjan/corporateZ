@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from typing import Dict
 from functools import reduce
 from os.path import dirname, exists
 from os import mkdir
@@ -19,7 +20,7 @@ except ImportError as e:
 '''
 
 
-def plotCategorizedCompanyDataForACertainState(dataSet, targetPath, title):
+def plotCategorizedCompanyDataForACertainState(dataSet: Dict[str, int], targetPath: str, title: str) -> bool:
     try:
         if(not exists(dirname(targetPath))):
             # creating target directory if not existing already
@@ -61,7 +62,7 @@ def plotCategorizedCompanyDataForACertainState(dataSet, targetPath, title):
 '''
 
 
-def categorizeAsPerCompanyStatus(dataSet):
+def categorizeAsPerCompanyStatus(dataSet) -> Dict[str, int]:
     return reduce(lambda acc, cur: dict([(cur.status, 1)] + [(k, v) for k, v in acc.items()]) if cur.status not in acc else dict(((k, v + 1) if k == cur.status else (k, v) for k, v in acc.items())), dataSet, {})
 
 
@@ -72,7 +73,7 @@ def categorizeAsPerCompanyStatus(dataSet):
 '''
 
 
-def categorizeAsPerCompanyClass(dataSet):
+def categorizeAsPerCompanyClass(dataSet) -> Dict[str, int]:
     return reduce(lambda acc, cur: dict([(cur.companyClass, 1)] + [(k, v) for k, v in acc.items()]) if cur.companyClass not in acc else dict(((k, v + 1) if k == cur.companyClass else (k, v) for k, v in acc.items())), dataSet, {})
 
 
@@ -83,7 +84,7 @@ def categorizeAsPerCompanyClass(dataSet):
 '''
 
 
-def categorizeAsPerCompanyCategory(dataSet):
+def categorizeAsPerCompanyCategory(dataSet) -> Dict[str, int]:
     return reduce(lambda acc, cur: dict([(cur.category, 1)] + [(k, v) for k, v in acc.items()]) if cur.category not in acc else dict(((k, v + 1) if k == cur.category else (k, v) for k, v in acc.items())), dataSet, {})
 
 
@@ -94,7 +95,7 @@ def categorizeAsPerCompanyCategory(dataSet):
 '''
 
 
-def categorizeAsPerCompanySubCategory(dataSet):
+def categorizeAsPerCompanySubCategory(dataSet) -> Dict[str, int]:
     return reduce(lambda acc, cur: dict([(cur.subCategory, 1)] + [(k, v) for k, v in acc.items()]) if cur.subCategory not in acc else dict(((k, v + 1) if k == cur.subCategory else (k, v) for k, v in acc.items())), dataSet, {})
 
 
@@ -105,7 +106,7 @@ def categorizeAsPerCompanySubCategory(dataSet):
 '''
 
 
-def categorizeAsPerCompanyPrincipalBusinessActivity(dataSet):
+def categorizeAsPerCompanyPrincipalBusinessActivity(dataSet) -> Dict[str, int]:
     return reduce(lambda acc, cur: dict([(cur.principalBusinessActivity, 1)] + [(k, v) for k, v in acc.items()]) if cur.principalBusinessActivity not in acc else dict(((k, v + 1) if k == cur.principalBusinessActivity else (k, v) for k, v in acc.items())), dataSet, {})
 
 
@@ -115,7 +116,7 @@ def categorizeAsPerCompanyPrincipalBusinessActivity(dataSet):
 '''
 
 
-def plotCompanyRegistrationDateWiseCategorizedData(dataSet, targetPath, title):
+def plotCompanyRegistrationDateWiseCategorizedData(dataSet: Dict[int, int], targetPath: str, title: str) -> bool:
     try:
         if(not exists(dirname(targetPath))):
             # creating target directory if not existing already
@@ -130,8 +131,9 @@ def plotCompanyRegistrationDateWiseCategorizedData(dataSet, targetPath, title):
             }
             # a range from `first when a company was registered` to `nearest year upto which we have any status`
             # filtering out improper years ( may be higher than current year ), lets us clean dataset, so that things go smooth
-            x = range(min(dataSet), max(
-                filter(lambda v: v < (localtime(time()).tm_year + 1), dataSet)) + 1)
+            x = range(min(dataSet),
+                      max(filter(lambda v: v < (
+                          localtime(time()).tm_year + 1), dataSet)) + 1)
             y = [dataSet.get(i, 0) for i in x]
             plt.figure(figsize=(24, 12), dpi=100)
             # creating major x-tick locator every 10 years
@@ -159,10 +161,14 @@ def plotCompanyRegistrationDateWiseCategorizedData(dataSet, targetPath, title):
     So finally we get a Dict[int, int], holding a mapping between
     year of registration & #-of companies registered in that year,
     which is going to be used by above function for plotting a graph.
+
+    This function is used in both case of processing individual states
+    & companies from all states across India 
+    ( actually we just chain them before invoking this function )
 '''
 
 
-def categorizeAsPerCompanyDateOfRegistration(dataSet):
+def categorizeAsPerCompanyDateOfRegistration(dataSet) -> Dict[int, int]:
     return reduce(lambda acc, cur: dict([(cur.dateOfRegistration.year, 1)] + [(k, v) for k, v in acc.items()]) if cur.dateOfRegistration.year not in acc else dict(((k, v + 1) if k == cur.dateOfRegistration.year else (k, v) for k, v in acc.items())),
                   filter(lambda v: v.dateOfRegistration is not None, dataSet), {})
 

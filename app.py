@@ -104,7 +104,6 @@ def main(targetPath='./data/') -> float:
                                 lambda v: v.endswith('csv'), listdir(targetPath)))),
                     'Email Service used by Companies in India',
                     './plots/mca_email_service_used_by_companies.png')]))
-        '''
         return __divide__(
             *__calculateSuccess__(
                 [
@@ -117,6 +116,24 @@ def main(targetPath='./data/') -> float:
                                 filter(
                                     lambda v: v.endswith('csv'), listdir(targetPath)))),
                         './plots/mca_company_registration_under_roc.png'
+                    )
+                ]
+            )
+        )
+        '''
+        return __divide__(
+            *__calculateSuccess__(
+                [
+                    plotCompanyRegistrationDateWiseCategorizedData(
+                        categorizeAsPerCompanyDateOfRegistration(
+                            chain(
+                                *[CompaniesUnderState.importFromCSV(
+                                    __extract_state__(i),
+                                    targetPath=join(targetPath, i)).companies for i in filter(
+                                    lambda v: v.endswith('csv'), listdir(targetPath))]
+                            )),
+                        './plots/registration_of_companies_around_years_all_india.png',
+                        'Rate of Registration of Companies around the Years'
                     )
                 ]
             )

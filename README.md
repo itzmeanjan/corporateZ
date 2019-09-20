@@ -323,4 +323,8 @@ Currently our dataset is having **27 RoCs** across India. Percentage of companie
 
 ![companies_registered_under_various_RoC(s)](./plots/mca_company_registration_under_roc.png)
 
+## Registration of Companies around Years ( all over India )
+Following diagram shows, rate of companies being registered over the years _( starting from 1900 )_ across different states of India
+![registration_of_companies_around_years_across_different_states_India](./plots/registration_of_companies_around_years_all_india.png)
+
 **More to come ...** :wink:
