@@ -200,6 +200,23 @@ def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream) -> Dict[str, in
                           cur.registeredOfficeAddress), acc), dataStream, {})
 
 
+'''
+    Converts a `Companies registered under a PinCode record` to
+    `Companies registered under each District of a certain State based record`
+'''
+
+
+def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph) -> Dict[str, int]:
+    def __updateCounter__(holder: Dict[str, int], key: str):
+        postOffice = poGraph.findPostOfficeUsingPin(key)
+        if postOffice:
+            holder.update({postOffice.districtName: holder.get(
+                postOffice.districtName, 0) + pincodes.get(key, 0)})
+        return holder
+
+    return reduce(lambda acc, cur: __updateCounter__(acc, cur), pincodes, {})
+
+
 if __name__ == '__main__':
     print('[!]This module is expected to be used as a backend handler')
     exit(0)

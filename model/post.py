@@ -43,7 +43,7 @@ class PostOffice(object):
 
     def __str__(self):
         super().__str__()
-        return '{} -- {} -- {}'.format(self.officeName, self.pincode, self.officeType)
+        return '{} -- {} -- {} -- {}'.format(self.officeName, self.pincode, self.officeType, self.stateName)
 
 
 '''
@@ -73,6 +73,15 @@ class PostOffice(object):
 class PostOfficeGraph(object):
     def __init__(self, headPOs):
         self.headPostOffices = headPOs
+
+    '''
+        Finds a postoffice by its pincode
+
+        If found returns an instance of PostOffice else returns None
+
+        Searches all S.O.s under all H.O.s iteratively,
+        as soon as a result is found, search is aborted
+    '''
 
     def findPostOfficeUsingPin(self, pincode: str):
         def __searchHandler__(searchHere):
@@ -182,8 +191,7 @@ class PostOfficeGraph(object):
                                          holder['S.O'],
                                          PostOfficeGraph([PostOffice(*i[:10], [])
                                                           for i in holder['H.O']]))))
-        except Exception as e:
-            print(e)
+        except Exception:
             graph = None
         finally:
             return graph

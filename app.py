@@ -7,6 +7,7 @@ from functools import reduce
 from itertools import chain
 try:
     from model.corporateStat import CompaniesUnderState
+    from model.post import PostOfficeGraph
     from util import *
     from utilMultiState import *
 except ImportError as e:
@@ -138,10 +139,13 @@ def main(targetPath='./data/') -> float:
             )
         )
         '''
-        print(classifyCompaniesUsingPinCodeOfRegisteredAddress(
-            CompaniesUnderState.importFromCSV(
-                __extract_state__('mca_westbengal_21042018.csv'),
-                targetPath='./data/mca_westbengal_21042018.csv').companies
+        print(pincodeToDistrictNameMapper(
+            classifyCompaniesUsingPinCodeOfRegisteredAddress(
+                CompaniesUnderState.importFromCSV(
+                    __extract_state__('mca_westbengal_21042018.csv'),
+                    targetPath='./data/mca_westbengal_21042018.csv').companies),
+            PostOfficeGraph.importFromCSV(
+                './data/all_india_PO_list_without_APS_offices_ver2_lat_long.csv')
         ))
         return 1.0
     except Exception:
