@@ -24,7 +24,7 @@ from functools import reduce
 
 
 class PostOffice(object):
-    def __init__(self, officeName: str, pincode: str, officeType: str, deliveryStatus: str, divisionName: str, regionName: str, circleName: str, taluk: str, districtName: str, stateName: str, children: List[PostOffice]):
+    def __init__(self, officeName: str, pincode: str, officeType: str, deliveryStatus: str, divisionName: str, regionName: str, circleName: str, taluk: str, districtName: str, stateName: str, children):
         self.officeName = officeName
         self.pincode = pincode
         self.officeType = officeType
@@ -71,11 +71,22 @@ class PostOffice(object):
 
 
 class PostOfficeGraph(object):
-    def __init__(self, headPOs: List[PostOffice]):
+    def __init__(self, headPOs):
         self.headPostOffices = headPOs
 
+    def findPostOfficeUsingPin(self, pincode: str):
+        def __searchHandler__(searchHere):
+            return reduce(lambda acc, cur: cur if not acc and cur.pincode ==
+                          pincode else acc, searchHere.children, None)
+        found = None
+        for i in self.headPostOffices:
+            found = __searchHandler__(i)
+            if found:
+                break
+        return found
+
     @staticmethod
-    def importFromCSV(targetPath: str) -> PostOfficeGraph:
+    def importFromCSV(targetPath: str):
         '''
             We just update a list of records, which we've
             for a certain `PostOffice category`, with second
@@ -94,12 +105,12 @@ class PostOfficeGraph(object):
             we try to find out a PostOffice object
             which is a `S.O` & of given name ( passed as second argument )
         '''
-        def __findSO__(currentHO: PostOffice, SOName: str):
+        def __findSO__(currentHO, SOName: str):
             if not SOName:
                 return currentHO
-            pointer: PostOffice = None
+            pointer = None
             for i in currentHO.children:
-                if i.officeName is SOName:
+                if i.officeName == SOName:
                     pointer = i
                     break
             return pointer
@@ -113,10 +124,10 @@ class PostOfficeGraph(object):
             using `SOName` argument, when we'll simply call closure which is written just
             above this one, with requested `SOName` & found `H.O` ( PostOffice object )
         '''
-        def __findHO__(graph: PostOfficeGraph, HOName: str, SOName: str = None) -> PostOffice:
-            pointer: PostOffice = None
+        def __findHO__(graph, HOName: str, SOName: str = None):
+            pointer = None
             for i in graph.headPostOffices:
-                if i.officeName is HOName:
+                if i.officeName == HOName:
                     pointer = __findSO__(i, SOName)
                     break
             return pointer
@@ -126,18 +137,18 @@ class PostOfficeGraph(object):
             and a newly created instance of PostOffice ( of type `S.O` )
             and append this instance to children list of `H.O`
         '''
-        def __linkSOWithHO__(graph: PostOfficeGraph, currentSO: List[str]) -> PostOfficeGraph:
+        def __linkSOWithHO__(graph, currentSO: List[str]):
             __findHO__(graph, currentSO[12]).children.append(
-                PostOffice(currentSO[:10], []))
+                PostOffice(*currentSO[:10], []))
             return graph
 
         '''
             First finding out target `S.O`, then newly created instance of PostOffice ( of type `B.O` )
             is linked up with this `S.O`
         '''
-        def __linkBOWithSO__(graph: PostOfficeGraph, currentBO: List[str]) -> PostOfficeGraph:
+        def __linkBOWithSO__(graph, currentBO: List[str]):
             __findHO__(graph, currentBO[12], SOName=currentBO[11]).children.append(
-                PostOffice(currentBO[:10], None)
+                PostOffice(*currentBO[:10], None)
             )
             return graph
 
@@ -145,9 +156,9 @@ class PostOfficeGraph(object):
             Finds out target `H.O`, where this `special B.O` reports
             & they're linked up
         '''
-        def __linkSpecialBOWithHO__(graph: PostOfficeGraph, currentSpecialBO: List[str]) -> PostOfficeGraph:
+        def __linkSpecialBOWithHO__(graph, currentSpecialBO: List[str]):
             __findHO__(graph, currentSpecialBO[12]).children.append(
-                PostOffice(currentSpecialBO[:10], None)
+                PostOffice(*currentSpecialBO[:10], None)
             )
             return graph
 
@@ -169,9 +180,10 @@ class PostOfficeGraph(object):
                                          __linkSOWithHO__(
                                              acc, cur),
                                          holder['S.O'],
-                                         PostOfficeGraph([PostOffice(i[:10], [])
+                                         PostOfficeGraph([PostOffice(*i[:10], [])
                                                           for i in holder['H.O']]))))
-        except Exception:
+        except Exception as e:
+            print(e)
             graph = None
         finally:
             return graph
