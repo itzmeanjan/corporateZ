@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-
+from __future__ import annotations
 from typing import Dict
 from functools import reduce
 from os.path import exists, dirname, basename
@@ -15,7 +15,7 @@ except ImportError as e:
     exit(1)
 
 
-def plotAllCompaniesByStateUsingStatus(dataSet: Dict, status: str, targetPath: str) -> bool:
+def plotAllCompaniesByStateUsingStatus(dataSet: Dict[str, int], status: str, targetPath: str) -> bool:
     '''
         calculates total # of companies we're considering
         for a certain state, so that calculation of percentage

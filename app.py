@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from __future__ import annotations
 from re import compile as reg_compile
 from os.path import basename, join
 from os import listdir
@@ -141,9 +142,13 @@ def main(targetPath='./data/') -> float:
         '''
         print(pincodeToDistrictNameMapper(
             classifyCompaniesUsingPinCodeOfRegisteredAddress(
-                CompaniesUnderState.importFromCSV(
-                    __extract_state__('mca_westbengal_21042018.csv'),
-                    targetPath='./data/mca_westbengal_21042018.csv').companies),
+                chain(
+                    *[CompaniesUnderState.importFromCSV(
+                        __extract_state__(i),
+                        targetPath=join(targetPath, i)).companies for i in filter(
+                        lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath))]
+                )
+            ),
             PostOfficeGraph.importFromCSV(
                 './data/all_india_PO_list_without_APS_offices_ver2_lat_long.csv')
         ))

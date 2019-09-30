@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from __future__ import annotations
 from typing import List, Dict
 from csv import reader as csvReader
 from functools import reduce
@@ -24,7 +25,7 @@ from functools import reduce
 
 
 class PostOffice(object):
-    def __init__(self, officeName: str, pincode: str, officeType: str, deliveryStatus: str, divisionName: str, regionName: str, circleName: str, taluk: str, districtName: str, stateName: str, children):
+    def __init__(self, officeName: str, pincode: str, officeType: str, deliveryStatus: str, divisionName: str, regionName: str, circleName: str, taluk: str, districtName: str, stateName: str, children: List[PostOffice]):
         self.officeName = officeName
         self.pincode = pincode
         self.officeType = officeType
@@ -71,7 +72,7 @@ class PostOffice(object):
 
 
 class PostOfficeGraph(object):
-    def __init__(self, headPOs):
+    def __init__(self, headPOs: List[PostOffice]):
         self.headPostOffices = headPOs
 
     '''
@@ -83,7 +84,7 @@ class PostOfficeGraph(object):
         as soon as a result is found, search is aborted
     '''
 
-    def findPostOfficeUsingPin(self, pincode: str):
+    def findPostOfficeUsingPin(self, pincode: str) -> PostOffice:
         def __searchHandler__(searchHere):
             return reduce(lambda acc, cur: cur if not acc and cur.pincode ==
                           pincode else acc, searchHere.children, None)
@@ -95,7 +96,7 @@ class PostOfficeGraph(object):
         return found
 
     @staticmethod
-    def importFromCSV(targetPath: str):
+    def importFromCSV(targetPath: str) -> PostOfficeGraph:
         '''
             We just update a list of records, which we've
             for a certain `PostOffice category`, with second
@@ -114,7 +115,7 @@ class PostOfficeGraph(object):
             we try to find out a PostOffice object
             which is a `S.O` & of given name ( passed as second argument )
         '''
-        def __findSO__(currentHO, SOName: str):
+        def __findSO__(currentHO: PostOffice, SOName: str) -> PostOffice:
             if not SOName:
                 return currentHO
             pointer = None
@@ -133,7 +134,7 @@ class PostOfficeGraph(object):
             using `SOName` argument, when we'll simply call closure which is written just
             above this one, with requested `SOName` & found `H.O` ( PostOffice object )
         '''
-        def __findHO__(graph, HOName: str, SOName: str = None):
+        def __findHO__(graph: PostOfficeGraph, HOName: str, SOName: str = None) -> PostOffice:
             pointer = None
             for i in graph.headPostOffices:
                 if i.officeName == HOName:
@@ -146,7 +147,7 @@ class PostOfficeGraph(object):
             and a newly created instance of PostOffice ( of type `S.O` )
             and append this instance to children list of `H.O`
         '''
-        def __linkSOWithHO__(graph, currentSO: List[str]):
+        def __linkSOWithHO__(graph: PostOfficeGraph, currentSO: List[str]) -> PostOfficeGraph:
             __findHO__(graph, currentSO[12]).children.append(
                 PostOffice(*currentSO[:10], []))
             return graph
@@ -155,7 +156,7 @@ class PostOfficeGraph(object):
             First finding out target `S.O`, then newly created instance of PostOffice ( of type `B.O` )
             is linked up with this `S.O`
         '''
-        def __linkBOWithSO__(graph, currentBO: List[str]):
+        def __linkBOWithSO__(graph: PostOfficeGraph, currentBO: List[str]) -> PostOfficeGraph:
             __findHO__(graph, currentBO[12], SOName=currentBO[11]).children.append(
                 PostOffice(*currentBO[:10], None)
             )
@@ -165,7 +166,7 @@ class PostOfficeGraph(object):
             Finds out target `H.O`, where this `special B.O` reports
             & they're linked up
         '''
-        def __linkSpecialBOWithHO__(graph, currentSpecialBO: List[str]):
+        def __linkSpecialBOWithHO__(graph: PostOfficeGraph, currentSpecialBO: List[str]) -> PostOfficeGraph:
             __findHO__(graph, currentSpecialBO[12]).children.append(
                 PostOffice(*currentSpecialBO[:10], None)
             )

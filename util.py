@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 
+from __future__ import annotations
 from typing import Dict
 from functools import reduce
+from itertools import chain
 from os.path import dirname, exists
 from os import mkdir
 from time import localtime, time
 from re import compile as reg_compile
 try:
+    from model.post import PostOfficeGraph
     from matplotlib import pyplot as plt
     from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 except ImportError as e:
@@ -183,7 +186,7 @@ def categorizeAsPerCompanyDateOfRegistration(dataSet) -> Dict[int, int]:
 '''
 
 
-def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream) -> Dict[str, int]:
+def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream: chain) -> Dict[str, int]:
     def updateCounter(key: str, holder: Dict[str, int]) -> Dict[str, int]:
         if key:
             holder.update({key: holder.get(key, 0) + 1})
@@ -202,11 +205,12 @@ def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream) -> Dict[str, in
 
 '''
     Converts a `Companies registered under a PinCode record` to
-    `Companies registered under each District of a certain State based record`
+    `Companies registered under each District of a certain State 
+    ( or may be for whole country ) based record`
 '''
 
 
-def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph) -> Dict[str, int]:
+def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph: PostOfficeGraph) -> Dict[str, int]:
     def __updateCounter__(holder: Dict[str, int], key: str):
         postOffice = poGraph.findPostOfficeUsingPin(key)
         if postOffice:

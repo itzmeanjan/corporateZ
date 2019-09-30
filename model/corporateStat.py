@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+from __future__ import annotations
 from datetime import date
 from csv import reader as csvReader
 
@@ -14,7 +15,7 @@ from csv import reader as csvReader
 
 
 class Company:
-    def __init__(self, cin, name, status, companyClass, category, subCategory, dor, state, authorizedCap, paidUpCap, industrialClass, businessActivity, address, roc, email):
+    def __init__(self, cin: str, name: str, status: str, companyClass: str, category: str, subCategory: str, dor: str, state: str, authorizedCap: str, paidUpCap: str, industrialClass: str, businessActivity: str, address: str, roc: str, email: str):
         self.corporateIdentificationNumber = cin
         self.name = name
         self.status = status
@@ -40,7 +41,7 @@ class Company:
         from string to an instance of Date class ( which makes manipulation of Date easier)
     '''
     @property
-    def dateOfRegistration(self):
+    def dateOfRegistration(self) -> date:
         try:
             return date(*[int(i) for i in self._dateOfRegistration.split('-')[-1::-1]])
         except Exception:
@@ -56,7 +57,7 @@ class Company:
 
 
 class CompaniesUnderState:
-    def __init__(self, state, companies):
+    def __init__(self, state: str, companies):
         self.state = state
         self.companies = companies
 
@@ -66,7 +67,7 @@ class CompaniesUnderState:
         becomes easier
     '''
     @staticmethod
-    def importFromCSV(state, targetPath):
+    def importFromCSV(state: str, targetPath: str) -> CompaniesUnderState:
         '''
             CSV dataset to be processed is pretty malformed like
             we can't just use `,` ( comma ) as field seperator in CSV.
