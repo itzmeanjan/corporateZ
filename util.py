@@ -214,8 +214,8 @@ def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph: PostOfficeGra
     def __updateCounter__(holder: Dict[str, int], key: str):
         postOffice = poGraph.findPostOfficeUsingPin(key)
         if postOffice:
-            holder.update({postOffice.districtName: holder.get(
-                postOffice.districtName, 0) + pincodes.get(key, 0)})
+            holder.update({'{} ( {} )'.format(postOffice.districtName, postOffice.stateName): holder.get(
+                '{} ( {} )'.format(postOffice.districtName, postOffice.stateName), 0) + pincodes.get(key, 0)})  # to be returned dictionary holds districtName & corresponding stateName as key & # of companies, having registered office in that district, as value
         return holder
 
     return reduce(lambda acc, cur: __updateCounter__(acc, cur), pincodes, {})
