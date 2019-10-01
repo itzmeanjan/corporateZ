@@ -210,12 +210,20 @@ def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream: chain) -> Dict[
 '''
 
 
-def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph: PostOfficeGraph) -> Dict[str, int]:
-    def __updateCounter__(holder: Dict[str, int], key: str):
+def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph: PostOfficeGraph) -> Dict[str, Dict[str, int]]:
+    def __updateCounter__(holder: Dict[str, Dict[str, int]], key: str) -> Dict[str, Dict[str, int]]:
         postOffice = poGraph.findPostOfficeUsingPin(key)
         if postOffice:
-            holder.update({'{} ( {} )'.format(postOffice.districtName, postOffice.stateName): holder.get(
-                '{} ( {} )'.format(postOffice.districtName, postOffice.stateName), 0) + pincodes.get(key, 0)})  # to be returned dictionary holds districtName & corresponding stateName as key & # of companies, having registered office in that district, as value
+            holder.update(
+                {
+                    postOffice.stateName: holder.get(postOffice.stateName, {}).update(
+                        {
+                            postOffice.districtName: holder.get(postOffice.stateName, {}).get(
+                                postOffice.districtName, 0) + pincodes.get(key, 0)
+                        }
+                    )  # updating each district under each state, holding count of companies registered in that district under that certain state
+                }
+            )  # updating parent dictionary, holding a dictionary for each state
         return holder
 
     return reduce(lambda acc, cur: __updateCounter__(acc, cur), pincodes, {})

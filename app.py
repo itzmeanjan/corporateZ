@@ -153,7 +153,8 @@ def main(targetPath='./data/') -> float:
                 './data/all_india_PO_list_without_APS_offices_ver2_lat_long.csv')
         ))
         return 1.0
-    except Exception:
+    except Exception as e:
+        print(e)
         return 0.0
 
 
