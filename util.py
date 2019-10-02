@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 from __future__ import annotations
-from typing import Dict
+from typing import Dict, List
 from functools import reduce
 from itertools import chain
 from os.path import dirname, exists
@@ -9,7 +9,8 @@ from os import mkdir
 from time import localtime, time
 from re import compile as reg_compile
 try:
-    from model.post import PostOfficeGraph
+    from model.companiesUnderState import CountOfCompaniesUnderState, CountOfCompaniesUnderDistrict
+    from model.post import PostOfficeGraph, PostOffice
     from matplotlib import pyplot as plt
     from matplotlib.ticker import MultipleLocator, FormatStrFormatter
 except ImportError as e:
@@ -210,10 +211,19 @@ def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream: chain) -> Dict[
 '''
 
 
-def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph: PostOfficeGraph) -> Dict[str, Dict[str, int]]:
-    def __updateCounter__(holder: Dict[str, Dict[str, int]], key: str) -> Dict[str, Dict[str, int]]:
-        postOffice = poGraph.findPostOfficeUsingPin(key)
+def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph: PostOfficeGraph) -> List[CountOfCompaniesUnderState]:
+    def __updateCounter__(holder: List[CountOfCompaniesUnderState], key: str) -> List[CountOfCompaniesUnderState]:
+        postOffice: PostOffice = poGraph.findPostOfficeUsingPin(key)
         if postOffice:
+            found: CountOfCompaniesUnderState = reduce(lambda acc, cur: cur if cur.name ==
+                                                       postOffice.stateName else acc, holder, None)
+            if found:
+                found.updateCountForDistrict(
+                    postOffice.districtName, pincodes.get(key, 0))
+            else:
+                holder.append(CountOfCompaniesUnderState(postOffice.stateName, [
+                              CountOfCompaniesUnderDistrict(postOffice.districtName, pincodes.get(key, 0))]))
+            '''
             holder.update(
                 {
                     postOffice.stateName: holder.get(postOffice.stateName, {}).update(
@@ -224,9 +234,10 @@ def pincodeToDistrictNameMapper(pincodes: Dict[str, int], poGraph: PostOfficeGra
                     )  # updating each district under each state, holding count of companies registered in that district under that certain state
                 }
             )  # updating parent dictionary, holding a dictionary for each state
+            '''
         return holder
 
-    return reduce(lambda acc, cur: __updateCounter__(acc, cur), pincodes, {})
+    return reduce(lambda acc, cur: __updateCounter__(acc, cur), pincodes, [])
 
 
 if __name__ == '__main__':
