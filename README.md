@@ -6,6 +6,304 @@ All data upon which following analysis work will be done, is collected from [her
 
 Dataset upon which I'm working, was last updated on _21-04-2018_ ( as mentioned on Open Data Portal of India ).
 
+## Analysis of M.C.A. Data for _Mizoram_, India
+### Status of Companies in Mizoram
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Mizoram, India.
+- Active ( 50.0000% )
+- Strike Off ( 43.9394% )
+- Under Process of Striking off ( 6.0606% )
+
+![status_of_companies_in_mizoram](plots/mca_mizoram_21042018_company_status.png)
+
+---
+### Class of Companies in Mizoram
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Mizoram, India.
+- Private ( 85.6061% )
+- Public ( 12.8788% )
+- Private(One Person Company) ( 1.5152% )
+
+![companies_categorized_by_class_in_mizoram](plots/mca_mizoram_21042018_company_class.png)
+
+---
+### Category of Companies in Mizoram
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Mizoram, India.
+- Company limited by Shares ( 98.4848% )
+- Company Limited by Guarantee ( 1.5152% )
+
+![companies_categorized_by_category_in_mizoram](plots/mca_mizoram_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Mizoram
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Mizoram, India.
+- Non-govt company ( 93.1818% )
+- State Govt company ( 6.8182% )
+
+![companies_categorized_by_subCategory_in_mizoram](plots/mca_mizoram_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Mizoram
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Mizoram, India.
+- Business Services ( 24.2424% )
+- Agriculture and Allied Activities ( 15.1515% )
+- Trading ( 11.3636% )
+- Construction ( 10.6061% )
+- Manufacturing (Food stuffs) ( 6.0606% )
+- Manufacturing (Wood Products) ( 4.5455% )
+- Transport, storage and Communications ( 4.5455% )
+- Finance ( 3.7879% )
+- Community, personal & Social Services ( 3.7879% )
+- Electricity, Gas & Water companies ( 3.0303% )
+- Real Estate and Renting ( 3.0303% )
+- Manufacturing (Machinery & Equipments) ( 3.0303% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 3.0303% )
+- Manufacturing (Others) ( 1.5152% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 0.7576% )
+- Manufacturing (Textiles) ( 0.7576% )
+- Mining & Quarrying ( 0.7576% )
+
+![companies_categorized_by_principalBusinessActivity_in_mizoram](plots/mca_mizoram_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Mizoram
+Companies registered in Mizoram gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_mizoram](plots/mca_mizoram_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Nagaland_, India
+### Status of Companies in Nagaland
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Nagaland, India.
+- Strike Off ( 48.4902% )
+- Active ( 41.7407% )
+- Under Process of Striking off ( 6.2167% )
+- Not Available for eFiling ( 3.1972% )
+- Amalgamated ( 0.1776% )
+- Under liquidation ( 0.1776% )
+
+![status_of_companies_in_nagaland](plots/mca_nagaland_21042018_company_status.png)
+
+---
+### Class of Companies in Nagaland
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Nagaland, India.
+- Private ( 90.4085% )
+- Public ( 8.5258% )
+- Private(One Person Company) ( 1.0657% )
+
+![companies_categorized_by_class_in_nagaland](plots/mca_nagaland_21042018_company_class.png)
+
+---
+### Category of Companies in Nagaland
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Nagaland, India.
+- Company limited by Shares ( 98.2238% )
+- Company Limited by Guarantee ( 1.7762% )
+
+![companies_categorized_by_category_in_nagaland](plots/mca_nagaland_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Nagaland
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Nagaland, India.
+- Non-govt company ( 98.0462% )
+- State Govt company ( 1.9538% )
+
+![companies_categorized_by_subCategory_in_nagaland](plots/mca_nagaland_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Nagaland
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Nagaland, India.
+- Manufacturing (Wood Products) ( 21.3144% )
+- Business Services ( 14.7425% )
+- Trading ( 11.3677% )
+- Agriculture and Allied Activities ( 11.0124% )
+- Construction ( 6.3943% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 5.3286% )
+- Manufacturing (Food stuffs) ( 4.4405% )
+- Electricity, Gas & Water companies ( 3.9076% )
+- Community, personal & Social Services ( 3.7300% )
+- Transport, storage and Communications ( 3.7300% )
+- Real Estate and Renting ( 2.8419% )
+- Finance ( 2.6643% )
+- Mining & Quarrying ( 2.1314% )
+- Manufacturing (Machinery & Equipments) ( 1.7762% )
+- Others ( 1.4210% )
+- Manufacturing (Textiles) ( 1.2433% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.0657% )
+- Manufacturing (Others) ( 0.3552% )
+- Manufacturing (Leather & products thereof) ( 0.3552% )
+- OTHERS ( 0.1776% )
+
+![companies_categorized_by_principalBusinessActivity_in_nagaland](plots/mca_nagaland_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Nagaland
+Companies registered in Nagaland gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_nagaland](plots/mca_nagaland_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Odisha_, India
+### Status of Companies in Odisha
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Odisha, India.
+- Active ( 66.0905% )
+- Strike Off ( 31.8498% )
+- Dormant under section 455 ( 0.6235% )
+- Under Process of Striking off ( 0.3182% )
+- Amalgamated ( 0.2967% )
+- Under liquidation ( 0.2623% )
+- Not Available for eFiling ( 0.2623% )
+- Dissolved ( 0.2580% )
+- Converted to LLP ( 0.0258% )
+- Converted to LLP and dissolved ( 0.0086% )
+- Liquidated ( 0.0043% )
+
+![status_of_companies_in_odisha](plots/mca_odisha_21042018_company_status.png)
+
+---
+### Class of Companies in Odisha
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Odisha, India.
+- Private ( 89.7876% )
+- Public ( 8.3118% )
+- Private(One Person Company) ( 1.8834% )
+- NA ( 0.0172% )
+
+![companies_categorized_by_class_in_odisha](plots/mca_odisha_21042018_company_class.png)
+
+---
+### Category of Companies in Odisha
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Odisha, India.
+- Company limited by Shares ( 99.5786% )
+- Company Limited by Guarantee ( 0.3784% )
+- Unlimited Company ( 0.0258% )
+- NA ( 0.0172% )
+
+![companies_categorized_by_category_in_odisha](plots/mca_odisha_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Odisha
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Odisha, India.
+- Non-govt company ( 99.2776% )
+- State Govt company ( 0.4257% )
+- Guarantee and Association comp ( 0.1505% )
+- Subsidiary of Foreign Company ( 0.0774% )
+- Union Govt company ( 0.0516% )
+- NA ( 0.0172% )
+
+![companies_categorized_by_subCategory_in_odisha](plots/mca_odisha_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Odisha
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Odisha, India.
+- Business Services ( 20.5796% )
+- Construction ( 16.1034% )
+- Trading ( 13.5492% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 10.3844% )
+- Real Estate and Renting ( 6.5101% )
+- Agriculture and Allied Activities ( 6.1189% )
+- Community, personal & Social Services ( 5.0740% )
+- Manufacturing (Food stuffs) ( 5.0353% )
+- Transport, storage and Communications ( 3.5346% )
+- Mining & Quarrying ( 3.1003% )
+- Manufacturing (Machinery & Equipments) ( 2.7606% )
+- Finance ( 2.5886% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.5093% )
+- Electricity, Gas & Water companies ( 1.1051% )
+- Manufacturing (Textiles) ( 0.9976% )
+- Manufacturing (Others) ( 0.3483% )
+- OTHERS ( 0.3010% )
+- Manufacturing (Wood Products) ( 0.1892% )
+- Manufacturing (Leather & products thereof) ( 0.1032% )
+- Others ( 0.0559% )
+- Insurance ( 0.0516% )
+
+![companies_categorized_by_principalBusinessActivity_in_odisha](plots/mca_odisha_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Odisha
+Companies registered in Odisha gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_odisha](plots/mca_odisha_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Puducherry_, India
+### Status of Companies in Puducherry
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Puducherry, India.
+- Strike Off ( 53.3106% )
+- Active ( 39.6658% )
+- Not Available for eFiling ( 4.9505% )
+- Amalgamated ( 0.8045% )
+- Under Process of Striking off ( 0.6807% )
+- Dissolved ( 0.3094% )
+- Under liquidation ( 0.1856% )
+- Converted to LLP ( 0.0309% )
+- Converted to LLP and dissolved ( 0.0309% )
+- Dormant under section 455 ( 0.0309% )
+
+![status_of_companies_in_puducherry](plots/mca_puducherry_21042018_company_status.png)
+
+---
+### Class of Companies in Puducherry
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Puducherry, India.
+- Private ( 90.6869% )
+- Public ( 8.5087% )
+- Private(One Person Company) ( 0.8045% )
+
+![companies_categorized_by_class_in_puducherry](plots/mca_puducherry_21042018_company_class.png)
+
+---
+### Category of Companies in Puducherry
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Puducherry, India.
+- Company limited by Shares ( 99.5359% )
+- Company Limited by Guarantee ( 0.4022% )
+- Unlimited Company ( 0.0619% )
+
+![companies_categorized_by_category_in_puducherry](plots/mca_puducherry_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Puducherry
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Puducherry, India.
+- Non-govt company ( 99.2574% )
+- State Govt company ( 0.5260% )
+- Subsidiary of Foreign Company ( 0.2166% )
+
+![companies_categorized_by_subCategory_in_puducherry](plots/mca_puducherry_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Puducherry
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Puducherry, India.
+- Business Services ( 24.9072% )
+- Others ( 16.6770% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 10.9220% )
+- Trading ( 9.5606% )
+- Finance ( 5.6931% )
+- Manufacturing (Machinery & Equipments) ( 5.3837% )
+- Community, personal & Social Services ( 4.6411% )
+- Construction ( 4.1151% )
+- Manufacturing (Food stuffs) ( 3.6510% )
+- Transport, storage and Communications ( 3.2797% )
+- Manufacturing (Textiles) ( 2.1658% )
+- Agriculture and Allied Activities ( 2.0421% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.8255% )
+- Real Estate and Renting ( 1.2067% )
+- Mining & Quarrying ( 1.0210% )
+- Electricity, Gas & Water companies ( 0.8973% )
+- Manufacturing (Leather & products thereof) ( 0.8354% )
+- Manufacturing (Others) ( 0.7735% )
+- Manufacturing (Wood Products) ( 0.3094% )
+- OTHERS ( 0.0619% )
+- Insurance ( 0.0309% )
+
+![companies_categorized_by_principalBusinessActivity_in_puducherry](plots/mca_puducherry_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Puducherry
+Companies registered in Puducherry gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_puducherry](plots/mca_puducherry_21042018_company_dateOfRegistration.png)
+
+---
+
 ## Analysis of M.C.A. Data for _Punjab_, India
 ### Status of Companies in Punjab
 Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Punjab, India.
