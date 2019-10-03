@@ -79,14 +79,14 @@ def main(targetPath='./data/') -> float:
                             __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_dateOfRegistration.png'.format(basename(cur)[:-4]), 'Registration of Companies in {}'.format(__extract_state__(basename(cur))))
                 ] + acc,
                     map(lambda v: join(targetPath, v),
-                        filter(lambda v: v.endswith('csv'), listdir(targetPath))), [])
+                        filter(lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath))), [])
             )
         )  # calculating rate of success of these operation(s)
         allCompanyStatus = dict(map(lambda v:
                                     (__extract_state__(basename(v)), categorizeAsPerCompanyStatus(CompaniesUnderState.importFromCSV(
                                         __extract_state__(basename(v)), targetPath=v).companies)),
                                     map(lambda v: join(targetPath, v),
-                                        filter(lambda v: v.endswith('csv'), listdir(targetPath)))))
+                                        filter(lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath)))))
         return __divide__(
             *__calculateSuccess__(
                 map(lambda v: plotAllCompaniesByStateUsingStatus(
@@ -103,7 +103,7 @@ def main(targetPath='./data/') -> float:
                                 __extract_state__(v),
                                 targetPath=join(targetPath, v)).companies,
                             filter(
-                                lambda v: v.endswith('csv'), listdir(targetPath)))),
+                                lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath)))),
                     'Email Service used by Companies in India',
                     './plots/mca_email_service_used_by_companies.png')]))
         return __divide__(
@@ -116,7 +116,7 @@ def main(targetPath='./data/') -> float:
                                     __extract_state__(v),
                                     targetPath=join(targetPath, v)).companies,
                                 filter(
-                                    lambda v: v.endswith('csv'), listdir(targetPath)))),
+                                    lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath)))),
                         './plots/mca_company_registration_under_roc.png'
                     )
                 ]
@@ -131,7 +131,7 @@ def main(targetPath='./data/') -> float:
                                 *[CompaniesUnderState.importFromCSV(
                                     __extract_state__(i),
                                     targetPath=join(targetPath, i)).companies for i in filter(
-                                    lambda v: v.endswith('csv'), listdir(targetPath))]
+                                    lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath))]
                             )),
                         './plots/registration_of_companies_around_years_all_india.png',
                         'Rate of Registration of Companies around the Years'
@@ -156,25 +156,6 @@ def main(targetPath='./data/') -> float:
     except Exception as e:
         print('[!]Error : {}'.format(e))
         return 0.0
-
-
-def tmp(targetPath: str = './data/'):
-    def __extract_state__(fromIt: str) -> str:
-        match_obj = reg_compile(r'^mca_(\w+)_[0-9]{8,}\.csv$').match(fromIt)
-        return match_obj.group(1).capitalize() if match_obj else None
-
-    return pincodeToDistrictNameMapper(
-        classifyCompaniesUsingPinCodeOfRegisteredAddress(
-            chain(
-                *[CompaniesUnderState.importFromCSV(
-                    __extract_state__(i),
-                    targetPath=join(targetPath, i)).companies for i in filter(
-                    lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath))]
-            )
-        ),
-        PostOfficeGraph.importFromCSV(
-            './data/all_india_PO_list_without_APS_offices_ver2_lat_long.csv')
-    )
 
 
 if __name__ == '__main__':

@@ -1,14 +1,470 @@
 # corporateZ
-Data analysis done on Ministry of Corporate Affairs **( M.C.A. )**, Govt. of India's open data to get deeper insight, with :heart:
+Analyzing open data of Ministry of Corporate Affairs **( M.C.A. )**, Govt. of India to get deeper insight ( in District, State & Country Level ), with :heart:
 
 ## Data Source
 All data upon which following analysis work will be done, is collected from [here](https://data.gov.in/).
 
 Dataset upon which I'm working, was last updated on _21-04-2018_ ( as mentioned on Open Data Portal of India ).
 
-## Analysis of M.C.A. Data for _Uttarakhand_
+## Analysis of M.C.A. Data for _Punjab_, India
+### Status of Companies in Punjab
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Punjab, India.
+- Active ( 57.3301% )
+- Strike Off ( 39.7634% )
+- Under Process of Striking off ( 1.2668% )
+- Amalgamated ( 0.5074% )
+- Under liquidation ( 0.4032% )
+- Not Available for eFiling ( 0.3763% )
+- Dissolved ( 0.1310% )
+- Converted to LLP ( 0.1008% )
+- Converted to LLP and dissolved ( 0.0706% )
+- Dormant under section 455 ( 0.0470% )
+- Dormant ( 0.0034% )
+
+![status_of_companies_in_punjab](plots/mca_punjab_21042018_company_status.png)
+
+---
+### Class of Companies in Punjab
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Punjab, India.
+- Private ( 88.4816% )
+- Public ( 10.7893% )
+- Private(One Person Company) ( 0.6888% )
+- NA ( 0.0403% )
+
+![companies_categorized_by_class_in_punjab](plots/mca_punjab_21042018_company_class.png)
+
+---
+### Category of Companies in Punjab
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Punjab, India.
+- Company limited by Shares ( 99.4456% )
+- Company Limited by Guarantee ( 0.4435% )
+- Unlimited Company ( 0.0706% )
+- NA ( 0.0403% )
+
+![companies_categorized_by_category_in_punjab](plots/mca_punjab_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Punjab
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Punjab, India.
+- Non-govt company ( 99.7245% )
+- Subsidiary of Foreign Company ( 0.1478% )
+- State Govt company ( 0.0638% )
+- NA ( 0.0403% )
+- Guarantee and Association comp ( 0.0202% )
+- Union Govt company ( 0.0034% )
+
+![companies_categorized_by_subCategory_in_punjab](plots/mca_punjab_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Punjab
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Punjab, India.
+- Business Services ( 15.2213% )
+- Trading ( 13.0809% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 12.4156% )
+- Finance ( 11.1656% )
+- Manufacturing (Textiles) ( 6.7336% )
+- Manufacturing (Machinery & Equipments) ( 6.3136% )
+- Community, personal & Social Services ( 5.8768% )
+- Construction ( 5.7995% )
+- Real Estate and Renting ( 5.1477% )
+- Manufacturing (Food stuffs) ( 4.8923% )
+- Transport, storage and Communications ( 4.3009% )
+- Agriculture and Allied Activities ( 2.8393% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.8010% )
+- OTHERS ( 1.0719% )
+- Electricity, Gas & Water companies ( 0.8299% )
+- Manufacturing (Others) ( 0.7493% )
+- Manufacturing (Leather & products thereof) ( 0.5544% )
+- Others ( 0.5376% )
+- Manufacturing (Wood Products) ( 0.3562% )
+- Mining & Quarrying ( 0.2822% )
+- Insurance ( 0.0302% )
+
+![companies_categorized_by_principalBusinessActivity_in_punjab](plots/mca_punjab_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Punjab
+Companies registered in Punjab gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_punjab](plots/mca_punjab_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Rajasthan_, India
+### Status of Companies in Rajasthan
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Rajasthan, India.
+- Active ( 68.0539% )
+- Strike Off ( 25.3067% )
+- Under Process of Striking off ( 4.5951% )
+- Converted to LLP ( 0.6345% )
+- Converted to LLP and dissolved ( 0.5632% )
+- Not Available for eFiling ( 0.2469% )
+- Amalgamated ( 0.2267% )
+- Under liquidation ( 0.1463% )
+- Liquidated ( 0.1426% )
+- Dissolved ( 0.0439% )
+- Dormant under section 455 ( 0.0366% )
+- Active In Progress ( 0.0018% )
+- Dormant ( 0.0018% )
+
+![status_of_companies_in_rajasthan](plots/mca_rajasthan_21042018_company_status.png)
+
+---
+### Class of Companies in Rajasthan
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Rajasthan, India.
+- Private ( 93.4612% )
+- Public ( 5.6081% )
+- Private(One Person Company) ( 0.8795% )
+- NA ( 0.0512% )
+
+![companies_categorized_by_class_in_rajasthan](plots/mca_rajasthan_21042018_company_class.png)
+
+---
+### Category of Companies in Rajasthan
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Rajasthan, India.
+- Company limited by Shares ( 99.7330% )
+- Company Limited by Guarantee ( 0.2030% )
+- NA ( 0.0512% )
+- Unlimited Company ( 0.0128% )
+
+![companies_categorized_by_category_in_rajasthan](plots/mca_rajasthan_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Rajasthan
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Rajasthan, India.
+- Non-govt company ( 99.6380% )
+- State Govt company ( 0.1353% )
+- Subsidiary of Foreign Company ( 0.0933% )
+- Guarantee and Association comp ( 0.0622% )
+- NA ( 0.0512% )
+- Union Govt company ( 0.0201% )
+
+![companies_categorized_by_subCategory_in_rajasthan](plots/mca_rajasthan_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Rajasthan
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Rajasthan, India.
+- Business Services ( 16.4384% )
+- Trading ( 13.0904% )
+- Construction ( 12.8892% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 10.1647% )
+- Mining & Quarrying ( 7.5554% )
+- Real Estate and Renting ( 7.1038% )
+- Community, personal & Social Services ( 5.9537% )
+- Finance ( 5.0869% )
+- Manufacturing (Textiles) ( 4.3811% )
+- Manufacturing (Machinery & Equipments) ( 3.8070% )
+- Manufacturing (Food stuffs) ( 3.2182% )
+- Transport, storage and Communications ( 2.8415% )
+- Agriculture and Allied Activities ( 2.7190% )
+- Manufacturing (Others) ( 2.0223% )
+- Electricity, Gas & Water companies ( 1.0679% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 0.8759% )
+- Manufacturing (Wood Products) ( 0.2469% )
+- Others ( 0.2359% )
+- Manufacturing (Leather & products thereof) ( 0.1682% )
+- OTHERS ( 0.1115% )
+- Insurance ( 0.0219% )
+
+![companies_categorized_by_principalBusinessActivity_in_rajasthan](plots/mca_rajasthan_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Rajasthan
+Companies registered in Rajasthan gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_rajasthan](plots/mca_rajasthan_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Sikkim_, India
+### Status of Companies in Sikkim
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Sikkim, India.
+- Active ( 100.0000% )
+
+![status_of_companies_in_sikkim](plots/mca_sikkim_21042018_company_status.png)
+
+---
+### Class of Companies in Sikkim
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Sikkim, India.
+- Private ( 100.0000% )
+
+![companies_categorized_by_class_in_sikkim](plots/mca_sikkim_21042018_company_class.png)
+
+---
+### Category of Companies in Sikkim
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Sikkim, India.
+- Company limited by Shares ( 100.0000% )
+
+![companies_categorized_by_category_in_sikkim](plots/mca_sikkim_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Sikkim
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Sikkim, India.
+- Non-govt company ( 100.0000% )
+
+![companies_categorized_by_subCategory_in_sikkim](plots/mca_sikkim_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Sikkim
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Sikkim, India.
+- Business Services ( 50.0000% )
+- Transport, storage and Communications ( 50.0000% )
+
+![companies_categorized_by_principalBusinessActivity_in_sikkim](plots/mca_sikkim_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Sikkim
+Companies registered in Sikkim gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_sikkim](plots/mca_sikkim_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Tamilnadu_, India
+### Status of Companies in Tamilnadu
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Tamilnadu, India.
+- Active ( 56.6819% )
+- Strike Off ( 38.1739% )
+- Under Process of Striking off ( 2.1699% )
+- Amalgamated ( 1.0222% )
+- Dissolved ( 0.6013% )
+- Not Available for eFiling ( 0.4627% )
+- Liquidated ( 0.2853% )
+- Under liquidation ( 0.2677% )
+- Converted to LLP ( 0.1525% )
+- Converted to LLP and dissolved ( 0.0902% )
+- Dormant under section 455 ( 0.0770% )
+- Active In Progress ( 0.0117% )
+- Captured ( 0.0037% )
+
+![status_of_companies_in_tamilnadu](plots/mca_tamilnadu_21042018_company_status.png)
+
+---
+### Class of Companies in Tamilnadu
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Tamilnadu, India.
+- Private ( 90.7647% )
+- Public ( 8.2534% )
+- Private(One Person Company) ( 0.9636% )
+- NA ( 0.0183% )
+
+![companies_categorized_by_class_in_tamilnadu](plots/mca_tamilnadu_21042018_company_class.png)
+
+---
+### Category of Companies in Tamilnadu
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Tamilnadu, India.
+- Company limited by Shares ( 99.5901% )
+- Company Limited by Guarantee ( 0.3806% )
+- NA ( 0.0183% )
+- Unlimited Company ( 0.0110% )
+
+![companies_categorized_by_category_in_tamilnadu](plots/mca_tamilnadu_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Tamilnadu
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Tamilnadu, India.
+- Non-govt company ( 99.1684% )
+- Subsidiary of Foreign Company ( 0.6240% )
+- Guarantee and Association comp ( 0.0953% )
+- State Govt company ( 0.0763% )
+- NA ( 0.0183% )
+- Union Govt company ( 0.0176% )
+
+![companies_categorized_by_subCategory_in_tamilnadu](plots/mca_tamilnadu_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Tamilnadu
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Tamilnadu, India.
+- Business Services ( 27.5563% )
+- Trading ( 10.8097% )
+- Finance ( 9.6174% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 7.3566% )
+- Manufacturing (Machinery & Equipments) ( 6.4641% )
+- Construction ( 6.1576% )
+- Community, personal & Social Services ( 5.8144% )
+- Manufacturing (Textiles) ( 5.0899% )
+- Agriculture and Allied Activities ( 4.4915% )
+- Transport, storage and Communications ( 4.1322% )
+- Real Estate and Renting ( 3.1994% )
+- Manufacturing (Food stuffs) ( 2.4441% )
+- Electricity, Gas & Water companies ( 1.6668% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.4806% )
+- Mining & Quarrying ( 0.9606% )
+- Manufacturing (Others) ( 0.9460% )
+- Manufacturing (Leather & products thereof) ( 0.5940% )
+- Others ( 0.5624% )
+- OTHERS ( 0.3967% )
+- Manufacturing (Wood Products) ( 0.1877% )
+- Insurance ( 0.0719% )
+
+![companies_categorized_by_principalBusinessActivity_in_tamilnadu](plots/mca_tamilnadu_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Tamilnadu
+Companies registered in Tamilnadu gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_tamilnadu](plots/mca_tamilnadu_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Telangana_, India
+### Status of Companies in Telangana
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Telangana, India.
+- Active ( 71.8490% )
+- Strike Off ( 25.8808% )
+- Under Process of Striking off ( 0.9579% )
+- Amalgamated ( 0.5974% )
+- Converted to LLP ( 0.2768% )
+- Under liquidation ( 0.2400% )
+- Converted to LLP and dissolved ( 0.0592% )
+- Not Available for eFiling ( 0.0551% )
+- Dormant under section 455 ( 0.0378% )
+- Liquidated ( 0.0204% )
+- Active In Progress ( 0.0123% )
+- Dissolved ( 0.0092% )
+- Captured ( 0.0020% )
+- Dormant ( 0.0020% )
+
+![status_of_companies_in_telangana](plots/mca_telangana_21042018_company_status.png)
+
+---
+### Class of Companies in Telangana
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Telangana, India.
+- Private ( 92.0049% )
+- Public ( 6.9739% )
+- Private(One Person Company) ( 1.0161% )
+- NA ( 0.0051% )
+
+![companies_categorized_by_class_in_telangana](plots/mca_telangana_21042018_company_class.png)
+
+---
+### Category of Companies in Telangana
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Telangana, India.
+- Company limited by Shares ( 98.9532% )
+- Company Limited by Guarantee ( 0.9988% )
+- Unlimited Company ( 0.0429% )
+- NA ( 0.0051% )
+
+![companies_categorized_by_category_in_Telangana](plots/mca_telangana_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Telangana
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Telangana, India.
+- Non-govt company ( 99.2514% )
+- Subsidiary of Foreign Company ( 0.5852% )
+- State Govt company ( 0.1164% )
+- Guarantee and Association comp ( 0.0337% )
+- NA ( 0.0071% )
+- Union Govt company ( 0.0061% )
+
+![companies_categorized_by_subCategory_in_telangana](plots/mca_telangana_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Telangana
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Telangana, India.
+- Business Services ( 35.7254% )
+- Construction ( 9.2900% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 9.2615% )
+- Finance ( 6.5940% )
+- Trading ( 6.3571% )
+- Community, personal & Social Services ( 6.2866% )
+- Agriculture and Allied Activities ( 4.9713% )
+- Manufacturing (Machinery & Equipments) ( 4.2605% )
+- Real Estate and Renting ( 3.4150% )
+- Electricity, Gas & Water companies ( 3.0371% )
+- Manufacturing (Food stuffs) ( 2.5326% )
+- Transport, storage and Communications ( 2.2579% )
+- Mining & Quarrying ( 1.7524% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.4838% )
+- Manufacturing (Textiles) ( 1.4083% )
+- Others ( 0.5208% )
+- Manufacturing (Others) ( 0.4544% )
+- Manufacturing (Wood Products) ( 0.1848% )
+- Manufacturing (Leather & products thereof) ( 0.1031% )
+- Insurance ( 0.0909% )
+- OTHERS ( 0.0123% )
+
+![companies_categorized_by_principalBusinessActivity_in_telangana](plots/mca_telangana_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Telangana
+Companies registered in Telangana gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_telangana](plots/mca_telangana_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Tripura_, India
+### Status of Companies in Tripura
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Tripura, India.
+- Active ( 69.8238% )
+- Strike Off ( 22.0264% )
+- Under Process of Striking off ( 7.7093% )
+- Amalgamated ( 0.2203% )
+- Not Available for eFiling ( 0.2203% )
+
+![status_of_companies_in_tripura](plots/mca_tripura_21042018_company_status.png)
+
+---
+### Class of Companies in Tripura
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Tripura, India.
+- Private ( 85.9031% )
+- Public ( 11.4537% )
+- Private(One Person Company) ( 2.6432% )
+
+![companies_categorized_by_class_in_tripura](plots/mca_tripura_21042018_company_class.png)
+
+---
+### Category of Companies in Tripura
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Tripura, India.
+- Company limited by Shares ( 96.4758% )
+- Company Limited by Guarantee ( 3.5242% )
+
+![companies_categorized_by_category_in_tripura](plots/mca_tripura_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Tripura
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Tripura, India.
+- Non-govt company ( 96.4758% )
+- State Govt company ( 3.3040% )
+- Guarantee and Association comp ( 0.2203% )
+
+![companies_categorized_by_subCategory_in_tripura](plots/mca_tripura_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Tripura
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Tripura, India.
+- Business Services ( 20.4846% )
+- Trading ( 20.2643% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 9.9119% )
+- Agriculture and Allied Activities ( 8.8106% )
+- Construction ( 8.5903% )
+- Transport, storage and Communications ( 5.7269% )
+- Community, personal & Social Services ( 4.8458% )
+- Finance ( 4.8458% )
+- Manufacturing (Food stuffs) ( 4.6256% )
+- Real Estate and Renting ( 3.0837% )
+- Electricity, Gas & Water companies ( 1.7621% )
+- Manufacturing (Machinery & Equipments) ( 1.5419% )
+- Manufacturing (Wood Products) ( 1.5419% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.3216% )
+- Manufacturing (Textiles) ( 1.1013% )
+- Manufacturing (Others) ( 0.6608% )
+- Insurance ( 0.4405% )
+- Mining & Quarrying ( 0.4405% )
+
+![companies_categorized_by_principalBusinessActivity_in_tripura](plots/mca_tripura_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Tripura
+Companies registered in Tripura gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_tripura](plots/mca_tripura_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Uttarakhand_, India
 ### Status of Companies in Uttarakhand
-Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies regsitered in Uttarakhand, India.
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Uttarakhand, India.
 - Active ( 70.6806% )
 - Strike Off ( 23.5166% )
 - Under Process of Striking off ( 5.0320% )
@@ -91,7 +547,7 @@ Companies registered in Uttarakhand gets categorized by Year of Registration, wh
 
 ## Analysis of M.C.A. Data for _Uttar Pradesh_
 ### Status of Companies in Uttar Pradesh
-Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies regsitered in Uttar Pradesh, India.
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Uttar Pradesh, India.
 - Active ( 75.9273% )
 - Strike Off ( 21.6220% )
 - Under Process of Striking off ( 1.2637% )
