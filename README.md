@@ -6,6 +6,323 @@ All data upon which following analysis work will be done, is collected from [her
 
 Dataset upon which I'm working, was last updated on _21-04-2018_ ( as mentioned on Open Data Portal of India ).
 
+## Analysis of M.C.A. Data for _Madhyapradesh_, India
+### Status of Companies in Madhyapradesh
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Madhyapradesh, India.
+- Active ( 62.1060% )
+- Strike Off ( 35.8259% )
+- Under Process of Striking off ( 0.7618% )
+- Amalgamated ( 0.3108% )
+- Not Available for eFiling ( 0.3080% )
+- Converted to LLP ( 0.2420% )
+- Under liquidation ( 0.2420% )
+- Converted to LLP and dissolved ( 0.1320% )
+- Dormant under section 455 ( 0.0440% )
+- Dormant ( 0.0138% )
+- Dissolved ( 0.0083% )
+- Liquidated ( 0.0055% )
+
+![status_of_companies_in_madhyapradesh](plots/mca_madhyapradesh_21042018_company_status.png)
+
+---
+### Class of Companies in Madhyapradesh
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Madhyapradesh, India.
+- Private ( 90.9961% )
+- Public ( 7.8654% )
+- Private(One Person Company) ( 1.0918% )
+- NA ( 0.0468% )
+
+![companies_categorized_by_class_in_madhyapradesh](plots/mca_madhyapradesh_21042018_company_class.png)
+
+---
+### Category of Companies in Madhyapradesh
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Madhyapradesh, India.
+- Company limited by Shares ( 99.6232% )
+- Company Limited by Guarantee ( 0.3025% )
+- NA ( 0.0468% )
+- Unlimited Company ( 0.0275% )
+
+![companies_categorized_by_category_in_madhyapradesh](plots/mca_madhyapradesh_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Madhyapradesh
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Madhyapradesh, India.
+- Non-govt company ( 99.5105% )
+- State Govt company ( 0.2943% )
+- Subsidiary of Foreign Company ( 0.0908% )
+- NA ( 0.0468% )
+- Guarantee and Association comp ( 0.0413% )
+- Union Govt company ( 0.0165% )
+
+![companies_categorized_by_subCategory_in_madhyapradesh](plots/mca_madhyapradesh_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Madhyapradesh
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Madhyapradesh, India.
+- Business Services ( 18.2333% )
+- Trading ( 12.4168% )
+- Construction ( 10.8685% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 10.6127% )
+- Agriculture and Allied Activities ( 8.6739% )
+- Real Estate and Renting ( 6.3858% )
+- Community, personal & Social Services ( 5.9870% )
+- Finance ( 4.7302% )
+- Manufacturing (Food stuffs) ( 4.6367% )
+- Manufacturing (Machinery & Equipments) ( 4.2792% )
+- OTHERS ( 2.9839% )
+- Transport, storage and Communications ( 2.7584% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.8646% )
+- Manufacturing (Textiles) ( 1.7601% )
+- Mining & Quarrying ( 1.6336% )
+- Electricity, Gas & Water companies ( 1.2541% )
+- Manufacturing (Others) ( 0.5088% )
+- Manufacturing (Leather & products thereof) ( 0.1595% )
+- Manufacturing (Wood Products) ( 0.1568% )
+- Insurance ( 0.0660% )
+- Others ( 0.0303% )
+
+![companies_categorized_by_principalBusinessActivity_in_madhyapradesh](plots/mca_madhyapradesh_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Madhyapradesh
+Companies registered in Madhyapradesh gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_madhyapradesh](plots/mca_madhyapradesh_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Maharashtra_, India
+### Status of Companies in Maharashtra
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Maharashtra, India.
+- Active ( 65.8143% )
+- Strike Off ( 27.0488% )
+- Dissolved ( 1.6389% )
+- Amalgamated ( 1.6172% )
+- Under Process of Striking off ( 1.1242% )
+- Not Available for eFiling ( 0.9562% )
+- Converted to LLP ( 0.6331% )
+- Converted to LLP and dissolved ( 0.4939% )
+- Under liquidation ( 0.4643% )
+- Liquidated ( 0.1457% )
+- Dormant under section 455 ( 0.0473% )
+- Active In Progress ( 0.0121% )
+- Dormant ( 0.0020% )
+- Captured ( 0.0020% )
+
+![status_of_companies_in_maharashtra](plots/mca_maharashtra_21042018_company_status.png)
+
+---
+### Class of Companies in Maharashtra
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Maharashtra, India.
+- Private ( 91.1473% )
+- Public ( 7.9748% )
+- Private(One Person Company) ( 0.8697% )
+- NA ( 0.0082% )
+
+![companies_categorized_by_class_in_maharashtra](plots/mca_maharashtra_21042018_company_class.png)
+
+---
+### Category of Companies in Maharashtra
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Maharashtra, India.
+- Company limited by Shares ( 96.6512% )
+- Company Limited by Guarantee ( 3.2899% )
+- Unlimited Company ( 0.0507% )
+- NA ( 0.0082% )
+
+![companies_categorized_by_category_in_maharashtra](plots/mca_maharashtra_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Maharashtra
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Maharashtra, India.
+- Non-govt company ( 98.9133% )
+- Subsidiary of Foreign Company ( 0.8013% )
+- Guarantee and Association comp ( 0.2088% )
+- State Govt company ( 0.0425% )
+- Union Govt company ( 0.0259% )
+- NA ( 0.0082% )
+
+![companies_categorized_by_subCategory_in_maharashtra](plots/mca_maharashtra_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Maharashtra
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Maharashtra, India.
+- Business Services ( 26.8744% )
+- Trading ( 11.4084% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 8.1173% )
+- Construction ( 7.9097% )
+- Others ( 7.8333% )
+- Finance ( 6.7266% )
+- Manufacturing (Machinery & Equipments) ( 5.8504% )
+- Community, personal & Social Services ( 5.6439% )
+- Real Estate and Renting ( 4.3073% )
+- Transport, storage and Communications ( 3.2837% )
+- Agriculture and Allied Activities ( 2.8118% )
+- Manufacturing (Textiles) ( 2.6323% )
+- Manufacturing (Food stuffs) ( 2.2616% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.2777% )
+- Manufacturing (Others) ( 1.0864% )
+- Electricity, Gas & Water companies ( 0.8221% )
+- Mining & Quarrying ( 0.5857% )
+- OTHERS ( 0.1865% )
+- Manufacturing (Wood Products) ( 0.1440% )
+- Manufacturing (Leather & products thereof) ( 0.1344% )
+- Insurance ( 0.1023% )
+
+![companies_categorized_by_principalBusinessActivity_in_maharashtra](plots/mca_maharashtra_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Maharashtra
+Companies registered in Maharashtra gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_maharashtra](plots/mca_maharashtra_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Manipur_, India
+### Status of Companies in Manipur
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Manipur, India.
+- Active ( 65.6805% )
+- Strike Off ( 23.9645% )
+- Not Available for eFiling ( 5.3254% )
+- Under Process of Striking off ( 4.7337% )
+- Converted to LLP and dissolved ( 0.1479% )
+- Active In Progress ( 0.1479% )
+
+![status_of_companies_in_manipur](plots/mca_manipur_21042018_company_status.png)
+
+---
+### Class of Companies in Manipur
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Manipur, India.
+- Private ( 82.5444% )
+- Public ( 15.0888% )
+- Private(One Person Company) ( 2.3669% )
+
+![companies_categorized_by_class_in_manipur](plots/mca_manipur_21042018_company_class.png)
+
+---
+### Category of Companies in Manipur
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Manipur, India.
+- Company limited by Shares ( 93.9349% )
+- Company Limited by Guarantee ( 5.7692% )
+- Unlimited Company ( 0.2959% )
+
+![companies_categorized_by_category_in_manipur](plots/mca_manipur_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Manipur
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Manipur, India.
+- Non-govt company ( 96.8935% )
+- State Govt company ( 2.9586% )
+- Union Govt company ( 0.1479% )
+
+![companies_categorized_by_subCategory_in_manipur](plots/mca_manipur_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Manipur
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Manipur, India.
+- Business Services ( 21.5976% )
+- Trading ( 19.9704% )
+- Construction ( 12.2781% )
+- Agriculture and Allied Activities ( 8.1361% )
+- Community, personal & Social Services ( 7.8402% )
+- Finance ( 6.2130% )
+- Others ( 5.1775% )
+- Manufacturing (Food stuffs) ( 3.8462% )
+- Transport, storage and Communications ( 3.6982% )
+- Manufacturing (Metals & Chemicals, and products thereof) ( 3.4024% )
+- Real Estate and Renting ( 1.6272% )
+- Electricity, Gas & Water companies ( 1.3314% )
+- Manufacturing (Textiles) ( 1.3314% )
+- Manufacturing (Machinery & Equipments) ( 1.1834% )
+- Manufacturing (Wood Products) ( 0.8876% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 0.7396% )
+- Manufacturing (Others) ( 0.4438% )
+- Mining & Quarrying ( 0.2959% )
+
+![companies_categorized_by_principalBusinessActivity_in_manipur](plots/mca_manipur_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Manipur
+Companies registered in Manipur gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_manipur](plots/mca_manipur_21042018_company_dateOfRegistration.png)
+
+---
+
+## Analysis of M.C.A. Data for _Meghalaya_, India
+### Status of Companies in Meghalaya
+Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Meghalaya, India.
+- Active ( 54.5370% )
+- Strike Off ( 33.3957% )
+- Under Process of Striking off ( 5.9869% )
+- Not Available for eFiling ( 5.3321% )
+- Amalgamated ( 0.4677% )
+- Under liquidation ( 0.1871% )
+- Converted to LLP and dissolved ( 0.0935% )
+
+![status_of_companies_in_meghalaya](plots/mca_meghalaya_21042018_company_status.png)
+
+---
+### Class of Companies in Meghalaya
+Following PIE chart shows various companies categorized by their CLASS _( as of 21-04-2018 )_, present in Meghalaya, India.
+- Private ( 80.9167% )
+- Public ( 18.6155% )
+- Private(One Person Company) ( 0.4677% )
+
+![companies_categorized_by_class_in_meghalaya](plots/mca_meghalaya_21042018_company_class.png)
+
+---
+### Category of Companies in Meghalaya
+Following PIE chart shows various companies categorized by their CATEGORY _( as of 21-04-2018 )_, present in Meghalaya, India.
+- Company limited by Shares ( 95.2292% )
+- Company Limited by Guarantee ( 4.7708% )
+
+![companies_categorized_by_category_in_meghalaya](plots/mca_meghalaya_21042018_company_category.png)
+
+---
+### Sub-Category of Companies in Meghalaya
+Following PIE chart shows various companies categorized by their SUB_CATEGORY _( as of 21-04-2018 )_, present in Meghalaya, India.
+- Non-govt company ( 97.6614% )
+- State Govt company ( 1.6838% )
+- Union Govt company ( 0.2806% )
+- Subsidiary of Foreign Company ( 0.2806% )
+- Guarantee and Association comp ( 0.0935% )
+
+![companies_categorized_by_subCategory_in_meghalaya](plots/mca_meghalaya_21042018_company_subCategory.png)
+
+---
+### Principal Business Activity of Companies in Meghalaya
+Following PIE chart shows various companies categorized by their PRINCIPAL_BUSINESS_ACTIVITY _( as of 21-04-2018 )_, present in Meghalaya, India.
+- Manufacturing (Metals & Chemicals, and products thereof) ( 24.5089% )
+- Trading ( 12.4415% )
+- Business Services ( 10.5706% )
+- Mining & Quarrying ( 9.6352% )
+- Manufacturing (Food stuffs) ( 6.5482% )
+- Construction ( 5.3321% )
+- Community, personal & Social Services ( 5.1450% )
+- Agriculture and Allied Activities ( 5.0514% )
+- Others ( 4.1160% )
+- Manufacturing (Wood Products) ( 3.2741% )
+- Finance ( 2.5257% )
+- Electricity, Gas & Water companies ( 2.4322% )
+- Transport, storage and Communications ( 2.2451% )
+- Manufacturing (Machinery & Equipments) ( 1.7774% )
+- Real Estate and Renting ( 1.4967% )
+- Manufacturing (Paper & Paper products, Publishing, printing and reproduction of recorded media) ( 1.4032% )
+- Manufacturing (Textiles) ( 0.7484% )
+- Manufacturing (Others) ( 0.6548% )
+- Manufacturing (Leather & products thereof) ( 0.0935% )
+
+![companies_categorized_by_principalBusinessActivity_in_meghalaya](plots/mca_meghalaya_21042018_company_principalBusinessActivity.png)
+
+---
+### Registration of Companies by Year in Meghalaya
+Companies registered in Meghalaya gets categorized by Year of Registration, which is plotted as year of registration vs. #-of companies registered in that certain year _( while filtering out those companies which didn't had any date of registration data )_.
+
+![registration_of_companies_yearly_in_meghalaya](plots/mca_meghalaya_21042018_company_dateOfRegistration.png)
+
+---
+
 ## Analysis of M.C.A. Data for _Mizoram_, India
 ### Status of Companies in Mizoram
 Following PIE chart shows an overview of STATUS _( as of 21-04-2018 )_ of various companies registered in Mizoram, India.
