@@ -68,7 +68,7 @@ def plotCategorizedCompanyDataForACertainState(dataSet: Dict[str, int], targetPa
 
 
 def categorizeAsPerCompanyStatus(dataSet) -> Dict[str, int]:
-    return reduce(lambda acc, cur: dict([(cur.status, 1)] + [(k, v) for k, v in acc.items()]) if cur.status not in acc else dict(((k, v + 1) if k == cur.status else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.status, 1)] + [(k, v) for k, v in acc.items()]) if cur.status.strip().lower() != 'na' and ccur.status not in acc else dict(((k, v + 1) if k == cur.status else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 '''
@@ -79,7 +79,7 @@ def categorizeAsPerCompanyStatus(dataSet) -> Dict[str, int]:
 
 
 def categorizeAsPerCompanyClass(dataSet) -> Dict[str, int]:
-    return reduce(lambda acc, cur: dict([(cur.companyClass, 1)] + [(k, v) for k, v in acc.items()]) if cur.companyClass not in acc else dict(((k, v + 1) if k == cur.companyClass else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.companyClass, 1)] + [(k, v) for k, v in acc.items()]) if cur.companyClass.strip().lower() != 'na' and ccur.companyClass not in acc else dict(((k, v + 1) if k == cur.companyClass else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 '''
@@ -90,7 +90,7 @@ def categorizeAsPerCompanyClass(dataSet) -> Dict[str, int]:
 
 
 def categorizeAsPerCompanyCategory(dataSet) -> Dict[str, int]:
-    return reduce(lambda acc, cur: dict([(cur.category, 1)] + [(k, v) for k, v in acc.items()]) if cur.category not in acc else dict(((k, v + 1) if k == cur.category else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.category, 1)] + [(k, v) for k, v in acc.items()]) if cur.category.strip().lower() != 'na' and cur.category not in acc else dict(((k, v + 1) if k == cur.category else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 '''
@@ -101,7 +101,7 @@ def categorizeAsPerCompanyCategory(dataSet) -> Dict[str, int]:
 
 
 def categorizeAsPerCompanySubCategory(dataSet) -> Dict[str, int]:
-    return reduce(lambda acc, cur: dict([(cur.subCategory, 1)] + [(k, v) for k, v in acc.items()]) if cur.subCategory not in acc else dict(((k, v + 1) if k == cur.subCategory else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.subCategory, 1)] + [(k, v) for k, v in acc.items()]) if cur.subCategory.strip().lower() != 'na' and cur.subCategory not in acc else dict(((k, v + 1) if k == cur.subCategory else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 '''
@@ -112,7 +112,7 @@ def categorizeAsPerCompanySubCategory(dataSet) -> Dict[str, int]:
 
 
 def categorizeAsPerCompanyPrincipalBusinessActivity(dataSet) -> Dict[str, int]:
-    return reduce(lambda acc, cur: dict([(cur.principalBusinessActivity, 1)] + [(k, v) for k, v in acc.items()]) if cur.principalBusinessActivity not in acc else dict(((k, v + 1) if k == cur.principalBusinessActivity else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.principalBusinessActivity, 1)] + [(k, v) for k, v in acc.items()]) if cur.principalBusinessActivity.strip().lower() != 'na' and cur.principalBusinessActivity not in acc else dict(((k, v + 1) if k == cur.principalBusinessActivity else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 '''
