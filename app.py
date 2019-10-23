@@ -158,6 +158,24 @@ def main(targetPath='./data/') -> float:
         return 0.0
 
 
+def test(targetPath='./data/'):
+    def __extract_state__(fromIt: str) -> str:
+        match_obj = reg_compile(r'^mca_(\w+)_[0-9]{8,}\.csv$').match(fromIt)
+        return match_obj.group(1).capitalize() if match_obj else None
+    return pincodeToDistrictNameMapper(
+        classifyCompaniesUsingPinCodeOfRegisteredAddress(
+            chain(
+                *[CompaniesUnderState.importFromCSV(
+                    __extract_state__(i),
+                    targetPath=join(targetPath, i)).companies for i in filter(
+                    lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath))]
+            )
+        ),
+        PostOfficeGraph.importFromCSV(
+            './data/all_india_PO_list_without_APS_offices_ver2_lat_long.csv')
+    )
+
+
 if __name__ == '__main__':
     try:
         print('Success: {} %'.format(main()*100))

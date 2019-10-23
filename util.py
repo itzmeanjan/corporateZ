@@ -4,10 +4,11 @@ from __future__ import annotations
 from typing import Dict, List
 from functools import reduce
 from itertools import chain
+from collections import Counter
 from os.path import dirname, exists
 from os import mkdir
 from time import localtime, time
-from re import compile as reg_compile
+from re import compile as reg_compile, Pattern
 try:
     from model.companiesUnderState import CountOfCompaniesUnderState, CountOfCompaniesUnderDistrict
     from model.post import PostOfficeGraph, PostOffice
@@ -179,6 +180,19 @@ def categorizeAsPerCompanyDateOfRegistration(dataSet) -> Dict[int, int]:
 
 
 '''
+    Extracts 6 digit Pincode from registered office address
+    of a company & returns so.
+
+    In case of failure, returns None
+'''
+
+
+def __extractPinCodeFromAddress__(reg: Pattern, address: str) -> str:
+    matchObj = reg.search(address)
+    return matchObj.group() if matchObj else None
+
+
+'''
     Takes an iterable of model.corporateStat.Company & classifies their
     count using `Pincode of their Registered Address` ( extracted from Address field )
 
@@ -187,21 +201,10 @@ def categorizeAsPerCompanyDateOfRegistration(dataSet) -> Dict[int, int]:
 '''
 
 
-def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream: chain) -> Dict[str, int]:
-    def updateCounter(key: str, holder: Dict[str, int]) -> Dict[str, int]:
-        if key:
-            holder.update({key: holder.get(key, 0) + 1})
-        return holder
-
-    def extractPinCodeFromAddress(address: str) -> str:
-        matchObj = reg.search(address)
-        return matchObj.group() if matchObj else None
-
+def classifyCompaniesUsingPinCodeOfRegisteredAddress(dataStream: chain) -> Counter:
     reg = reg_compile(r'(\d{6})')  # pincode extraction regular expression
-    return reduce(lambda acc, cur:
-                  updateCounter(
-                      extractPinCodeFromAddress(
-                          cur.registeredOfficeAddress), acc), dataStream, {})
+    return Counter(map(lambda e: __extractPinCodeFromAddress__(
+        reg, e.registeredOfficeAddress), dataStream))
 
 
 '''

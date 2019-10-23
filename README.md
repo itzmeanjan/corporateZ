@@ -47,6 +47,7 @@ Dataset upon which I'm working, was last updated on _21-04-2018_ ( as mentioned 
 - [x] [Status of Companies all over India](docs/statusOfCompanies.md)
 - [x] [Preference of Companies as Email Service Provider](docs/emailServiceUsage.md)
 - [x] [Position of RoC(s) as per Company Registration](docs/companiesUnderRoCs.md)
+- [ ] [Company Presence in various Districts of India _( categorized based on States )_](.)
 
 ---
 
