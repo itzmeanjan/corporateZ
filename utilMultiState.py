@@ -147,13 +147,13 @@ def extractAllCompanyEmailProvider(dataStream: map) -> (Dict[str, int], int):
 
     # Increments usage count email service provider & returns updated Dictionary
     def __updateCounter__(holder: Dict[str, int], email: str) -> Dict[str, int]:
-        if(email):
-            holder.update({email: holder.get(email, 0) + 1})
-        return holder
         '''
         return holder if not email else dict([(email, 1)] + [(k, v) for k, v in holder.items()]) if email not in holder else dict(
             [(k, v + 1) if k == email else (k, v) for k, v in holder.items()])
         '''
+        if(email):
+            holder.update({email: holder.get(email, 0) + 1})
+        return holder
 
     # Keeps only top 5 elements ( having highest usage count ) in dictionary
     def __cleanupCounter__(holder: Dict[str, int], count: int, findTotal: bool = True) -> Dict[str, int]:
