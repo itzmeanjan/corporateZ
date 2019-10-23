@@ -1,0 +1,35 @@
+## Companies Registered under various RoC(s)
+Here I tried to extract how many companies are registered under which RoC _( Registrar of Companies )_ 
+and plotted that into BAR chart
+
+Currently our dataset is having **27 RoCs** across India. Percentage of companies registered across these RoCs is as follows
+
+- RoC-Delhi ( 20.4109% )
+- RoC-Mumbai ( 16.3580% )
+- RoC-Kolkata ( 11.2028% )
+- RoC-Hyderabad ( 7.1035% )
+- RoC-Chennai ( 6.2814% )
+- RoC-Bangalore ( 5.9830% )
+- RoC-Ahmedabad ( 5.4137% )
+- RoC-Kanpur ( 5.2838% )
+- RoC-Pune ( 3.5978% )
+- RoC-Jaipur ( 3.0764% )
+- ROC-Ernakulam ( 2.6974% )
+- RoC-Chandigarh ( 2.4802% )
+- RoC-Gwalior ( 2.0502% )
+- RoC-Patna ( 1.6143% )
+- RoC-Coimbatore ( 1.4225% )
+- RoC-Cuttack ( 1.3115% )
+- RoC-Shillong ( 0.8016% )
+- RoC-Jharkhand ( 0.7005% )
+- RoC-Chhattisgarh ( 0.5282% )
+- RoC-Goa ( 0.4871% )
+- RoC-Uttarakhand ( 0.3875% )
+- RoC-Himachal Pradesh ( 0.3281% )
+- RoC-Jammu ( 0.2914% )
+- RoC-Pondicherry ( 0.1822% )
+- RCAND ( 0.0058% )
+- RCDMM ( 0.0004% )
+- RCSRI ( 0.0001% )
+
+![companies_registered_under_various_RoC(s)](../plots/mca_company_registration_under_roc.png)

@@ -68,7 +68,7 @@ def plotCategorizedCompanyDataForACertainState(dataSet: Dict[str, int], targetPa
 
 
 def categorizeAsPerCompanyStatus(dataSet) -> Dict[str, int]:
-    return reduce(lambda acc, cur: dict([(cur.status, 1)] + [(k, v) for k, v in acc.items()]) if cur.status.strip().lower() != 'na' and ccur.status not in acc else dict(((k, v + 1) if k == cur.status else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.status, 1)] + [(k, v) for k, v in acc.items()]) if cur.status.strip().lower() != 'na' and cur.status not in acc else dict(((k, v + 1) if k == cur.status else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 '''
@@ -79,7 +79,7 @@ def categorizeAsPerCompanyStatus(dataSet) -> Dict[str, int]:
 
 
 def categorizeAsPerCompanyClass(dataSet) -> Dict[str, int]:
-    return reduce(lambda acc, cur: dict([(cur.companyClass, 1)] + [(k, v) for k, v in acc.items()]) if cur.companyClass.strip().lower() != 'na' and ccur.companyClass not in acc else dict(((k, v + 1) if k == cur.companyClass else (k, v) for k, v in acc.items())), dataSet, {})
+    return reduce(lambda acc, cur: dict([(cur.companyClass, 1)] + [(k, v) for k, v in acc.items()]) if cur.companyClass.strip().lower() != 'na' and cur.companyClass not in acc else dict(((k, v + 1) if k == cur.companyClass else (k, v) for k, v in acc.items())), dataSet, {})
 
 
 '''
