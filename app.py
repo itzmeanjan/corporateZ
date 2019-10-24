@@ -38,17 +38,17 @@ def main(targetPath='./data/') -> float:
         return match_obj.group(1).capitalize() if match_obj else None
 
     '''
-        A utility function to calculate division of 2-element tuple
-    '''
-    def __divide__(a: int, b: int) -> float:
-        return 0 if not b else a/b
-
-    '''
         Given a iterable of boolean values, it'll return a 2-element tuple,
         where first one will hold number of Truth values & last one will keep
         total # of values we're considering
     '''
     def __calculateSuccess__(result: List[bool]) -> float:
+        '''
+            A utility function to calculate division of 2-element tuple
+        '''
+        def __divide__(a: int, b: int) -> float:
+            return 0 if not b else a/b
+
         return __divide__(
             *reduce(
                 lambda acc, cur: (acc[0] + 1, acc[1] +

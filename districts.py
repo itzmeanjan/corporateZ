@@ -10,10 +10,28 @@ except ImportError as e:
     print('[!]Module Unavailable : {}'.format(str(e)))
     exit(1)
 
+'''
+    This function takes a collection of integers
+    & returns one normalized collection, where normalized
+    values belong to [0, 100], which is different that normal
+    mathematical normalization of form [0, 1]
+'''
+
 
 def __normalizeValues__(dataSet: List[int]) -> List[float]:
     total = sum(dataSet)
     return [(i/total)*100 for i in dataSet]
+
+
+'''
+    Plots a horizontal bar chart, showing how companies
+    are registered across different districts
+    of a certain state
+
+    This function will be invoked each time,
+    when we're interested in plotting distribution
+    of companies across districts of a State
+'''
 
 
 def plotDistributionOverDistricts(state: CountOfCompaniesUnderState, title: str, targetPath: str) -> bool:
@@ -28,7 +46,8 @@ def plotDistributionOverDistricts(state: CountOfCompaniesUnderState, title: str,
                 'size': 12
             }
             plt.figure(figsize=(24, 12), dpi=100)
-            plt.xlim(0, 100)
+            # for making plots look different, I'm temporarily disabling limiting X-axis value
+            # plt.xlim(0, 100)
             plt.gca().xaxis.set_major_locator(MultipleLocator(10))
             plt.gca().xaxis.set_major_formatter(PercentFormatter())
             plt.gca().xaxis.set_minor_locator(MultipleLocator(1))
