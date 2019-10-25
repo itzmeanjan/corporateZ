@@ -60,13 +60,13 @@ def main(targetPath='./data/') -> float:
             companyDataSet[cur].keys())), companyDataSet, set())
 
     try:
+        '''
         allCompanyStatus = dict(map(lambda v:
                                     (__extract_state__(basename(v)), categorizeAsPerCompanyStatus(CompaniesUnderState.importFromCSV(
                                         __extract_state__(basename(v)), targetPath=v).companies)),
                                     map(lambda v: join(targetPath, v),
                                         filter(lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath)))))
-        return __calculateSuccess__(
-            reduce(lambda acc, cur: [
+        reduce(lambda acc, cur: [
                 plotCategorizedCompanyDataForACertainState(categorizeAsPerCompanyStatus(
                     CompaniesUnderState.importFromCSV(
                         __extract_state__(basename(cur)), targetPath=cur).companies), './plots/{}_company_status.png'.format(basename(cur)[:-4]), 'Status of Companies in {}'.format(__extract_state__(basename(cur)))),
@@ -145,6 +145,28 @@ def main(targetPath='./data/') -> float:
                             targetPath=join(targetPath, i)).companies for i in filter(
                             lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath))]
                     )
+                ),
+                PostOfficeGraph.importFromCSV(
+                    './data/all_india_PO_list_without_APS_offices_ver2_lat_long.csv')
+            )]
+            +
+        '''
+        return __calculateSuccess__(
+            # plots distribution of active companies across different districts of India
+            [plotDistributionOverDistricts(i,
+                                           'Distribution of Active Companies over Districts in {}, India'.format(
+                                               i.name),
+                                           'plots/distributionOfActiveCompaniesOverDistrictsIn{}.jpg'.format(
+                                               '_'.join(i.name.lower().split())))
+             for i in pincodeToDistrictNameMapper(
+                classifyCompaniesUsingPinCodeOfRegisteredAddress(
+                    # filtering out only ACTIVE companies
+                    filter(lambda e: e.status.strip().lower() == 'active', chain(
+                        *[CompaniesUnderState.importFromCSV(
+                            __extract_state__(i),
+                            targetPath=join(targetPath, i)).companies for i in filter(
+                            lambda v: v.startswith('mca') and v.endswith('csv'), listdir(targetPath))]
+                    ))
                 ),
                 PostOfficeGraph.importFromCSV(
                     './data/all_india_PO_list_without_APS_offices_ver2_lat_long.csv')
